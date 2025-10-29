@@ -1,7 +1,16 @@
+import { ITransaction } from "@/types/transaction";
+import moment from "moment-jalaali";
 import { BsFillDashCircleFill, BsFillPlusCircleFill } from "react-icons/bs";
 import { GoChevronDown } from "react-icons/go";
 
-export default function page() {
+export default async function page() {
+    const result = await fetch(`http://localhost:8008/transactions`)
+    const transactions:ITransaction[] = await result.json()
+
+    const bankTransactions = transactions.filter(
+        t => t.type === "deposit" || t.type === "withdraw"
+    );
+
     return (
         <div className="Container">
             <div className="FlexBetween">
@@ -16,44 +25,30 @@ export default function page() {
                 </button>
             </div>
             <div className="List">
-                <div className="Item">
-                    <div className="FlexBetween">
-                        <div className="Title">عنوان تراکنش</div>
-                        <GoChevronDown size={20} />
-                    </div>
-                    <div className="FlexBetween mt-3 Opacity">
-                        <div className="FlexG8">
-                            <small>مانده</small>
-                            <small className="En pb-1">45.000</small>
+                {bankTransactions.map(item => (
+                    <div className="Item" key={item.id}>
+                        <div className="FlexBetween">
+                            <div className="Title">{item.title}</div>
+                            <GoChevronDown size={20} />
                         </div>
-                        <div className="flex gap-6">
-                            <div className="flex items-center gap-2">
-                                <small className="En">30.000.000</small>
-                                <BsFillPlusCircleFill className="Plus"  size={16}/>
+                        <div className="FlexBetween mt-3">
+                            <div className="FlexG8">
+                                <small>مانده</small>
+                                <small className="En pb-1">45.000</small>
                             </div>
-                            <small className="En">1404.02.23</small>
-                        </div>
-                    </div>
-                </div>
-                <div className="Item">
-                    <div className="FlexBetween">
-                        <div className="Title">عنوان تراکنش</div>
-                        <GoChevronDown size={20} />
-                    </div>
-                    <div className="FlexBetween mt-3 Opacity">
-                        <div className="FlexG8">
-                            <small>مانده</small>
-                            <small className="En pb-1">45.000</small>
-                        </div>
-                        <div className="flex gap-6">
-                            <div className="flex items-center gap-2">
-                                <small className="En">30.000.000</small>
-                                <BsFillDashCircleFill className="Dash"  size={16}/>
+                            <div className="flex gap-6">
+                                <div className="flex items-center gap-2">
+                                    <small className="En">{item.amount.toLocaleString()}</small>
+                                    {item.type === "deposit" 
+                                        ? <BsFillPlusCircleFill className="Plus" size={15} /> 
+                                        : <BsFillDashCircleFill className="Dash" size={15} />
+                                    }
+                                </div>
+                                <small className="En">{moment(item.date).format('jYYYY/jMM/jDD')}</small>
                             </div>
-                            <small className="En">1404.02.23</small>
                         </div>
                     </div>
-                </div>
+                ))}
             </div>
         </div>
     )

@@ -1,6 +1,6 @@
 import { JSX } from "react"
 import { BsListNested } from "react-icons/bs";
-import { GoPlusCircle } from "react-icons/go";
+import { GoPeople, GoPlusCircle } from "react-icons/go";
 import { RiHomeLine } from "react-icons/ri";
 
 
@@ -16,11 +16,11 @@ export const links: LinkTypes[] = [
         title: "Add",
         icon: <GoPlusCircle size={21}/>
     },
-    // {
-    //     href: "/application/contacts",
-    //     title: "contacts",
-    //     icon: <GoPeople  size={20}/>
-    // },
+    {
+        href: "/application/contacts",
+        title: "contacts",
+        icon: <GoPeople  size={20}/>
+    },
     {
         href: "/application/list",
         title: "list",

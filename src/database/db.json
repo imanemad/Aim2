@@ -7,30 +7,32 @@
         }
     ],
     "contacts": [
-        { "id": 1, "userId": 1, "name": "Ali", "phone": "09123456789" },
-        { "id": 2, "userId": 1, "name": "Sara", "phone": "09129876543" }
+        { 
+            "id": 1, 
+            "userId": 1, 
+            "name": "حمید", 
+            "phone": "09123456789" 
+        }
     ],
     "banks": [
-        { "id": 1, "userId": 1, "bankName": "Bank Melli", "balance": 1000000 },
-        { "id": 2, "userId": 1, "bankName": "Bank Sepah", "balance": 500000 }
+        { 
+            "id": 1,
+            "userId": 1,
+            "bankName": "Bank Melli", 
+            "balance": 1000000 
+        }
     ],
     "transactions": [
         {
-        "id": 1,
-        "userId": 1,
-        "bankId": 1,
-        "type": "deposit",
-        "amount": 200000,
-        "date": "2025-10-29T10:00:00Z"
-        },
-        {
-        "id": 2,
-        "userId": 1,
-        "bankId": 1,
-        "type": "debtor",
-        "amount": 50000,
-        "contactId": 1,
-        "date": "2025-10-29T12:00:00Z"
+            "id": 1,
+            "userId": 1,
+            "bankId": 1,
+            "contactId": 1,
+            "title": "هدیه",
+            "type": "deposit",
+            "amount": 200000,
+            "description":"",
+            "date": "2025-10-29T10:00:00Z"
         }
     ]
 }

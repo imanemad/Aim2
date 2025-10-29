@@ -1,3 +1,6 @@
+## Start Project Date
+1404.08.07
+
 ## Getting Started Port 8080
 npm run dev
 

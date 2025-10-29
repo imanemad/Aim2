@@ -1,3 +1,5 @@
+import Banks from "@/components/Banks";
+import Loans from "@/components/Loans";
 import Link from "next/link";
 import { IoPower } from "react-icons/io5";
 
@@ -17,32 +19,14 @@ export default function page() {
                         </Link>
                     </div>
 
-                    {/* <div className="Loans">
-                        <div className="Debts">
-                            <small>مبالغ دریافتنی</small>
-                            <div className="En">0</div>
-                        </div>
-                        <div className="Debts">
-                            <small>مبالغ پرداختنی</small>
-                            <div className="En">0</div>
-                        </div>
-                    </div> */}
+                    <Loans/>
 
                     <div className="Banks ">
                         <div className="Balance">
                             <div>کل موجودی</div>
                             <div className="En">1.450.600</div>
                         </div>
-                        {/* <a href="" className="Item">
-                            <div className="Name">بانک شهر</div>
-                            <div className="En">450.000</div>
-                            <BsArrowLeft size={16} className="bi bi-arrow-left"/>
-                        </a>
-                        <a href="" className="Item">
-                            <div className="Name">نقد</div>
-                            <div className="En">450.000</div>
-                            <BsArrowLeft size={16} className="bi bi-arrow-left"/>
-                        </a> */}
+                        <Banks/>
                     </div>
                     {/* <Chart/> */}
                 </div>
