@@ -1,0 +1,319 @@
+@use "publicStyles" as *;
+
+.App{
+    position: relative;
+    width: 100%;
+    height: 100dvh;
+    color: #454545;
+    background: radial-gradient(circle at 30% 70%, #c9d5f7 0%, #0000 50%),
+                radial-gradient(circle at 70% 20%, #e3e3e3 0%, #0000 40%), 
+                radial-gradient(circle, #fff, #ededed 80%);
+
+    .Nav{
+        @extend %FlexBetween;
+        width: 100%;
+        height: 40px;
+        padding: 5px 10px;
+        background-color: #00000010;
+
+        .Logo{
+            direction: ltr;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: -1px;
+            div{
+                margin-top: 3px
+            }
+        }
+    }
+
+    .Routers{
+        @extend %FlexCenter;
+        width: 100%;
+        height: 50px;
+        background-color: #fff;
+        
+        .Container{
+            @extend %FlexCenter;
+            
+            a{
+                @extend %GridCenter;
+                margin: 0 15px;
+                width: 35px;
+                height: 35px;
+                border-radius: 8px;
+            }
+            .active{
+                color:#fff;
+                background-color: #444;
+            }
+        }
+
+    }
+
+    &-Main{
+        height: calc(100dvh - 90px);
+        padding-top: 10px;
+
+        .Container{
+            width: 550px;
+            margin: 0 auto;
+            padding: 15px;
+
+            @mixin Card{ 
+                border-radius: 8px;
+                background-color: #ffffff99;
+                padding: 20px;
+                width: 100%;
+            }
+
+            .Titr{
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                margin-bottom: 8px;
+            }
+
+            .Search{
+                @include Card;
+                display: flex;
+                align-items: center;
+                padding: 5px 10px;
+                background-color: #fff;
+                border: 1px solid #00000042;
+                input{
+                    outline: unset;
+                    border: unset;
+                    padding: 0 5px;
+                    width: 100%;
+                    background-color: unset;
+
+                    &::placeholder{
+                        color: #ccc;
+                    }
+                }
+            }
+            
+            .Add{
+                .Row{
+                    display: flex;
+                    align-items: center;
+                    flex-direction: column;
+                    gap: 12px;
+                    margin-bottom: 12px;
+                    
+                    .Item{
+                        @extend .FlexG8;
+                        @include Card;
+                        position: relative;
+                        padding: 10px 15px;
+                        transition: all 0.2s;
+                        &:hover{
+                            background-color: #fff;
+                        }
+                    }
+                    // .Item:first-of-type .bi{
+                    //     color: rgb(71, 133, 0);
+                    // }   
+                    // .Item:last-of-type .bi{
+                    //     color: rgba(165, 11, 0, 0.596);
+                    // }   
+                }
+            }
+
+            .Form{
+                @include Card;
+                &-Item{
+                    width: calc(100% - 40px);
+                    margin: 20px;
+                    gap: 10px;
+                    label{
+                        width: 30%;
+                        text-align: end;
+                        color: #00000060;
+                        font-size: 12px;
+                    }
+                    input{
+                        outline: unset;
+                        border: unset;
+                        background-color: unset;
+                        width: 100%;
+                        padding: 5px 10px;
+                        border-radius: 6px;
+                        border: 1px solid #00000014;
+                        background-color: #fff;
+                        @media (max-width:576px) {
+                            font-size: 16px;
+                        }
+                    }
+                    .En{
+                        font-size: 16px;
+                        padding: 8px 10px;
+                    }
+                }
+            }
+
+            .Banks{
+                @include Card;
+                .Balance{
+                    @extend %FlexBetween;
+                    border-radius: 5px;
+                    background-color: #fff;
+                    padding: 10px 20px;
+                    .En{
+                        font-weight: bold;
+                        font-size: 16px;
+                    }
+                }
+                .Item{
+                    @extend %FlexBetween;
+                    padding: 10px 20px 20px;
+                    margin: 15px 0;
+                    border-bottom: 1px solid #00000010;
+                    .Name{
+                        width: 150px;
+                    }
+                    .En{
+                        width: 150px;
+                    }
+                    .bi{
+                        color: #0077ff;
+                    }
+                }
+            }
+
+            .Contact{
+                @include Card;
+                height: calc(100dvh - 180px);
+                margin: 5px 0;
+                padding: 5px;
+                overflow-y: auto;
+                .Item{
+                    @extend %Cursor;
+                    @extend %FlexBetween;
+                    padding: 5px 10px;
+                    border-radius: 5px;
+                    &:hover{
+                        background-color: #fff;
+                    }
+                }
+            }
+
+            .List{
+                @extend .Contact;
+                .Item{
+                    display: block;
+                    padding: 20px 10px;
+                    margin-bottom: 5px;
+                    border-bottom: 1px solid #00000010;
+                    border-radius: 5px 5px 0 0;
+                    &:active{
+                        transform: translateY(2px) !important;
+                    }
+                    .Plus{
+                        margin-bottom: 3px;
+                        color: #41a100;
+                    }
+                    .Dash{
+                        margin-bottom: 3px;
+                        color: #d10000;
+                    }
+                    .Opacity{
+                        opacity: 0.6;
+                    }
+                    .Title{
+                        color: #000;
+                    }
+                }
+            }
+
+            .Home{
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                .Profile{
+                    @include Card;
+                    @extend %FlexBetween;
+                }
+
+                .Loans{
+                    @extend .FlexG8;
+                    .Debts{
+                        @include Card;
+                        height: 130px;
+                        .En{
+                            @extend %GridCenter;
+                            font-size: 23px;
+                            font-weight: bold;
+                            width: 100%;
+                            height: 85%;
+                            color: #555;
+                        }
+                    }
+                }
+
+                
+                .Chart{
+                    @include Card;
+                    &-Container{
+                        display: flex;
+                        justify-content: center;
+                        align-items: end;
+                        margin-top: 20px;
+                        gap: 2px;
+                        width: 100%;
+                        height: 100px;
+                        .Item{
+                            position: relative;
+                            border-radius: 4px;
+                            width: 4%;
+                            min-width: 12px;
+                            max-width: 22px;
+                            background-color: #505050;
+                            &:hover{
+                                background-color: #3593eb;
+                                .Detail{
+                                    visibility: visible;
+                                    opacity: 1;
+                                }
+                            }
+                            .Detail{
+                                position: absolute;
+                                top: -52px;
+                                left: 50%;
+                                display: flex;
+                                flex-direction: column;
+                                gap: 3px;
+                                padding: 4px 5px;
+                                border-radius: 5px;
+                                transform: translateX(-50%);
+                                color: #fff;
+                                background-color: #3593eb;
+                                box-shadow: 0 0 5px;
+                                z-index: 5;
+                                visibility: hidden;
+                                opacity: 0;
+                                &::after{
+                                    content: "";
+                                    bottom: -10px;
+                                    left: 50%;
+                                    transform: translateX(-50%);
+                                    position: absolute;
+                                    width: 2px;
+                                    height: 10px;
+                                    background-color: #3593eb;
+                                }
+                                span{
+                                    font-size: 11px;
+                                    font-family: Arial, Helvetica, sans-serif;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+}

@@ -1,0 +1,79 @@
+@use "publicStyles" as *;
+
+* {
+   outline: none !important;
+   box-sizing: border-box;
+   font-size: 14px;
+
+   @media(max-width:576px) {
+      font-size: 15px;
+   }
+}
+
+html {
+   scroll-behavior: smooth;
+}
+
+img, svg {
+   vertical-align: middle !important;
+}
+
+body {
+   min-width: 320px !important;
+}
+
+a {
+   @extend .Cursor;
+   display: block;
+   text-decoration: none;
+   color: inherit;
+   
+   &:hover {
+      color: inherit;
+   }
+}
+
+button {
+   @extend .Cursor;
+   outline: none;
+   border: none;
+   background-color: inherit;
+   color: inherit;
+}
+
+ul {
+   padding-right: 2rem;
+}
+
+.Show{
+   visibility: visible!important;
+   opacity: 1!important;
+}
+
+.En{
+   font-family: Arial, Helvetica, sans-serif;
+}
+
+.FlexCenter {
+   @extend %FlexCenter;
+}
+
+.FlexBetween {
+   @extend %FlexBetween;
+}
+
+.GridCenter {
+   @extend %GridCenter;
+}
+
+.Cursor{
+   @extend %Cursor;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+   transition: background-color 9999s ease-in-out 0s;
+   -webkit-text-fill-color: inherit !important;
+}

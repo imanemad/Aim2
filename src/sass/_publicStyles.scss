@@ -1,0 +1,30 @@
+%GridCenter { 
+    display: grid;
+    place-content: center; 
+}
+
+%FlexBetween {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+%FlexCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+%Cursor {
+    cursor: pointer !important;
+    &:active{
+        transform: scale(0.97);
+    } 
+}
+
+.FlexG8{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}

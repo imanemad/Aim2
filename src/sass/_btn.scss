@@ -1,0 +1,60 @@
+$White:#fff;
+$Black:#000;
+$Blue: #0B5ED7;
+$Blue-Light: #008cff;
+$Red: #f50000;
+$Gray: #8a8a8a;
+
+.Btn {
+    width: fit-content;
+    border: none;
+    padding: 6.5px 15px 4px;
+    text-decoration: none;
+    border-radius: 8px;
+    margin: 4px;
+    cursor: pointer;
+    transition: all 0.2s ;
+    &:active{
+        transform: translateY(2px);
+    }
+
+    &-Black {
+        background-color: #303030;
+        color: $White;
+
+        &:hover {
+            color: $White;
+            background-color: #000;
+        }
+    }
+
+    &-White {
+        color: #1f1f1f;
+        background-color: $White;
+        
+        
+        &:hover {
+            background-color: #cacaca;
+        }
+    }
+
+    &-Blue {
+        background-color: $Blue-Light;
+        color: $White;
+
+        &:hover {
+            color: $White;
+            background-color: $Blue;
+        }
+    }
+    
+    &-Red {
+        background-color: $Red;
+        color: $White;
+
+        &:hover {
+            color: $White;
+            background-color: #d10101;
+        }
+    }
+}
