@@ -132,24 +132,21 @@
                         width: 30%;
                         text-align: end;
                         color: #00000060;
-                        font-size: 12px;
+                        font-size: 13px !important;
                     }
                     input{
                         outline: unset;
                         border: unset;
                         background-color: unset;
                         width: 100%;
-                        padding: 5px 10px;
+                        padding: 6px 10px;
                         border-radius: 6px;
                         border: 1px solid #00000014;
                         background-color: #fff;
+                        font-size: 15px !important;
                         @media (max-width:576px) {
-                            font-size: 16px;
+                            font-size: 16px !important;
                         }
-                    }
-                    .En{
-                        font-size: 16px;
-                        padding: 8px 10px;
                     }
                 }
             }
@@ -163,7 +160,7 @@
                     padding: 10px 20px;
                     .En{
                         font-weight: bold;
-                        font-size: 16px;
+                        font-size: 16px !important;
                     }
                 }
                 .Item{
@@ -241,7 +238,7 @@
                         height: 130px;
                         .En{
                             @extend %GridCenter;
-                            font-size: 23px;
+                            font-size: 23px !important;
                             font-weight: bold;
                             width: 100%;
                             height: 85%;
@@ -302,7 +299,7 @@
                                     background-color: #3593eb;
                                 }
                                 span{
-                                    font-size: 11px;
+                                    font-size: 11px !important; 
                                     font-family: Arial, Helvetica, sans-serif;
                                 }
                             }

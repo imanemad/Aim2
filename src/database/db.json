@@ -2,36 +2,93 @@
     "users": [
         {   
             "id": 1,
-            "name": "Iman", 
-            "email": "iman@example.com" 
+            "name": "Iman",
+            "email": "iman@example.com"
         }
     ],
+
     "contacts": [
         { 
-            "id": 1, 
-            "userId": 1, 
-            "name": "حمید", 
-            "phone": "09123456789" 
+            "id": 1,
+            "userId": 1,
+            "name": "حمید",
+            "phone": "09123456789"
         }
     ],
+
     "banks": [
         { 
             "id": 1,
             "userId": 1,
-            "bankName": "Bank Melli", 
-            "balance": 1000000 
+            "bankName": "بانک شهر",
+            "balance": 1000000
+        },
+        { 
+            "id": 2,
+            "userId": 1,
+            "bankName": "موجودی نقد",
+            "balance": 2000000
         }
     ],
+
+    "categories": [
+        {
+            "id": 1,
+            "userId":null,
+            "type": "deposit",
+            "name": "دریافت قرض / وام"
+        },
+        {
+            "id": 2,
+            "userId":null,
+            "type": "deposit",
+            "name": "تسویه با بدهکار"
+        },
+        {
+            "id": 3,
+            "userId":null,
+            "type": "deposit",
+            "name": "سایر واریزها"
+        },
+        
+
+
+        {
+            "id": 4,
+            "userId":null,
+            "type": "withdraw",
+            "name": "اعطای قرض / وام به شخص"
+        },
+        {
+            "id": 5,
+            "userId":null,
+            "type": "withdraw",
+            "name": "تسویه با بستانکار"
+        },
+        {
+            "id": 6,
+            "userId":null,
+            "type": "withdraw",
+            "name": "هزینه خوراک"
+        },
+        {
+            "id": 7,
+            "userId":null,
+            "type": "withdraw",
+            "name": "سایر برداشت‌ها"
+        }
+    ],
+
     "transactions": [
         {
             "id": 1,
             "userId": 1,
             "bankId": 1,
             "contactId": 1,
-            "title": "هدیه",
-            "type": "deposit",
+            "categoryId": 4,
+            "type": "withdraw",
             "amount": 200000,
-            "description":"",
+            "description": "دریافت قرض از حمید",
             "date": "2025-10-29T10:00:00Z"
         }
     ]

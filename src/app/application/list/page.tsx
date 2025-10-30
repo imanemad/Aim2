@@ -1,15 +1,17 @@
-import { ITransaction } from "@/types/transaction";
+import { ICategory } from "@/types/category";
+import { ITransactionList } from "@/types/transactionList";
 import moment from "moment-jalaali";
 import { BsFillDashCircleFill, BsFillPlusCircleFill } from "react-icons/bs";
-import { GoChevronDown } from "react-icons/go";
+import { FaCaretLeft } from "react-icons/fa";
 
 export default async function page() {
-    const result = await fetch(`http://localhost:8008/transactions`)
-    const transactions:ITransaction[] = await result.json()
+    const userId = 1;
 
-    const bankTransactions = transactions.filter(
-        t => t.type === "deposit" || t.type === "withdraw"
-    );
+    const result = await fetch(`http://localhost:8008/transactions`)
+    const transactions:ITransactionList[] = await result.json()
+
+    const resultCategory = await fetch(`http://localhost:8008/categories?userId=${userId}`);
+    const categories:ICategory[] = await resultCategory.json()
 
     return (
         <div className="Container">
@@ -21,34 +23,33 @@ export default async function page() {
                     </svg>
                 </div>
                 <button className="Btn Btn-Black text-nowrap">
-                    انتخاب تاریخ
+                    فیلتر تراکنش ها
                 </button>
             </div>
             <div className="List">
-                {bankTransactions.map(item => (
-                    <div className="Item" key={item.id}>
-                        <div className="FlexBetween">
-                            <div className="Title">{item.title}</div>
-                            <GoChevronDown size={20} />
-                        </div>
-                        <div className="FlexBetween mt-3">
-                            <div className="FlexG8">
-                                <small>مانده</small>
-                                <small className="En pb-1">45.000</small>
+                {transactions.map(item => {
+                    const category = categories.find(c => c.id == item.categoryId);
+                    return(
+                        <div className="Item" key={item.id}>
+                            <div className="FlexBetween">
+                                <div className="Title">
+                                    {category ? category.name : "بدون دسته"}
+                                </div>
+                                <FaCaretLeft size={20} />
                             </div>
-                            <div className="flex gap-6">
-                                <div className="flex items-center gap-2">
-                                    <small className="En">{item.amount.toLocaleString()}</small>
+                            <div className="FlexBetween mt-3">
+                                <div className="FlexG8">
                                     {item.type === "deposit" 
                                         ? <BsFillPlusCircleFill className="Plus" size={15} /> 
                                         : <BsFillDashCircleFill className="Dash" size={15} />
                                     }
+                                    <small className="En">{item.amount.toLocaleString()}</small>
                                 </div>
                                 <small className="En">{moment(item.date).format('jYYYY/jMM/jDD')}</small>
                             </div>
                         </div>
-                    </div>
-                ))}
+                    )
+                })}
             </div>
         </div>
     )

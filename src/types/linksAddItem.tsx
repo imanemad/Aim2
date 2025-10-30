@@ -1,5 +1,5 @@
 import { JSX } from "react"
-import { BsDownload, BsPersonAdd, BsPersonDash, BsUpload } from "react-icons/bs";
+import { BsDownload, BsUpload } from "react-icons/bs";
 
 interface LinkTypes{
     url:string,
@@ -11,21 +11,11 @@ export const linksAddItem: LinkTypes[] = [
     {
         url: "deposit",
         title: "واریز به حساب",
-        icon: <BsDownload size={18}/>
+        icon: <BsDownload size={18.5}/>
     },
     {
         url: "withdraw",
         title: "برداشت از حساب",
         icon: <BsUpload size={17}/>
-    },
-    {
-        url: "debtor",
-        title: "ثبت بدهکار",
-        icon: <BsPersonAdd size={20}/>
-    },
-    {
-        url: "creditor",
-        title: "ثبت بستانکار",
-        icon: <BsPersonDash size={20}/>
     },
 ];

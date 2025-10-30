@@ -22,15 +22,15 @@ export default function Page() {
                 </a>
                 <form className="Form">
                     <div className="Form-Item">
+                        <label htmlFor="">بابت</label>
+                        <input type="text"/>
+                    </div>
+                    <div className="Form-Item">
                         <label htmlFor="">مبلغ</label>
                         <input type="text" className="En"/>
                     </div>
                     <div className="Form-Item">
                         <label htmlFor="">بانک / صندوق</label>
-                        <input type="text"/>
-                    </div>
-                    <div className="Form-Item">
-                        <label htmlFor="">بابت</label>
                         <input type="text"/>
                     </div>
                     <div className="Form-Item">
