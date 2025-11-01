@@ -16,31 +16,31 @@ export default function Page() {
 
     return (
         <div className="Container">
-                <a href="/application" className="Titr">
-                    <BsArrowRightCircle size={18}/>
-                    <div>{title}</div>
-                </a>
-                <form className="Form">
-                    <div className="Form-Item">
-                        <label htmlFor="">بابت</label>
-                        <input type="text"/>
-                    </div>
-                    <div className="Form-Item">
-                        <label htmlFor="">مبلغ</label>
-                        <input type="text" className="En"/>
-                    </div>
-                    <div className="Form-Item">
-                        <label htmlFor="">بانک / صندوق</label>
-                        <input type="text"/>
-                    </div>
-                    <div className="Form-Item">
-                        <label htmlFor="">توضیحات</label>
-                        <input type="text"/>
-                    </div>
-                    <div className="text-end Form-Item">
-                        <button className="Btn Btn-Black m-0 mt-4">ذخیره</button>
-                    </div>
-                </form>
-            </div>
+            <a href="/application" className="Titr">
+                <BsArrowRightCircle size={18}/>
+                <div>{title}</div>
+            </a>
+            <form className="Form">
+                <div className="Form-Item">
+                    <label htmlFor="">بابت</label>
+                    <input type="text"/>
+                </div>
+                <div className="Form-Item">
+                    <label htmlFor="">مبلغ</label>
+                    <input type="text" className="En"/>
+                </div>
+                <div className="Form-Item">
+                    <label htmlFor="">بانک / صندوق</label>
+                    <input type="text"/>
+                </div>
+                <div className="Form-Item">
+                    <label htmlFor="">توضیحات</label>
+                    <input type="text"/>
+                </div>
+                <div className="text-end Form-Item">
+                    <button className="Btn Btn-Black m-0 mt-4">ذخیره</button>
+                </div>
+            </form>
+        </div>
     )
 }
