@@ -1,19 +1,32 @@
-import { useEffect, useState } from "react"
-import { IPeople } from "./types"
-import { getContacts } from "./endPoints"
+import { useEffect, useState } from "react";
+import { IPeople } from "./types";
+import { getContacts } from "./endPoints";
 
 export const useGetContacts = () => {
-    const [data, setData]=useState<IPeople[]>([])
-    const [loading, setLoading] = useState<boolean>(false)
-    useEffect(()=>{
-        async function load() {
-            setLoading(true)
-            const data = await getContacts()
-            setData(data)
-            setLoading(false)
-        }
-        load()
-    },[])
+    const [data, setData] = useState<IPeople[]>([]);
+    const [loading, setLoading] = useState<boolean>(false);
+    const [error, setError] = useState<string | null>(null);
 
-    return { data, loading }
-}
+    useEffect(() => {
+        async function load() {
+            setLoading(true);
+            setError(null);
+            try {
+                const data = await getContacts();
+                setData(data);
+            } catch (err: unknown) {
+                if (err instanceof Error) {
+                    setError(err.message);
+                } else {
+                    setError("خطای نامشخص");
+                }
+            }
+            finally {
+                setLoading(false);
+            }
+        }
+        load();
+    }, []);
+
+    return { data, loading, error };
+};

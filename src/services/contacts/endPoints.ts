@@ -1,7 +1,7 @@
 import httpServices from "@/lib/httpServices";
+import { IPeople } from "./types";
 
-export async function getContacts() {
-    const { data } = await httpServices.get("/contacts");
-    return data;
+export function getContacts(): Promise<IPeople[]> {
+    return httpServices.get("/contacts").then(res => res.data);
 }
 
