@@ -1,2 +1,2 @@
-export const baseBackendURL= process.env.BASE__URL || "http://localhost:8008";
-export const baseFrontURL= "http://localhost:8080";
+export const baseBackendURL = process.env.NEXT_PUBLIC_BASE_BACKEND_URL!;
+export const baseFrontURL = process.env.NEXT_PUBLIC_BASE_FRONT_URL!;

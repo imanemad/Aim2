@@ -8,7 +8,7 @@ const httpServices = axios.create({
     },
 });
 
-// ✅ Token Checking
+// (Request)
 httpServices.interceptors.request.use(
     (config) => {
         const token = localStorage.getItem("token");
@@ -18,7 +18,7 @@ httpServices.interceptors.request.use(
     (error) => Promise.reject(error)
 );
 
-// ✅ Response Messages
+// (Response)
 httpServices.interceptors.response.use(
     (response) => response,
     (error) => {
