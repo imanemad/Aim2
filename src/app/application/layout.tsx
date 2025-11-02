@@ -1,5 +1,6 @@
 import NavApp from "@/components/NavApp";
 import Routs from "@/components/Routs";
+import { Toaster } from "react-hot-toast";
 
 
 export default function Layout({children}:IChildrenProps) {
@@ -10,6 +11,7 @@ export default function Layout({children}:IChildrenProps) {
                     {children}
                 </main>
             <Routs/>
+            <Toaster position="top-left" containerStyle={{top: 60}}/>
         </div>
     )
 }

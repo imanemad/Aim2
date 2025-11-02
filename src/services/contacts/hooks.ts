@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { IPeople } from "./types";
 import { getContacts } from "./endPoints";
+import toast from "react-hot-toast";
 
 export const useGetContacts = () => {
     const [data, setData] = useState<IPeople[]>([]);
@@ -14,12 +15,11 @@ export const useGetContacts = () => {
             try {
                 const data = await getContacts();
                 setData(data);
-            } catch (err: unknown) {
-                if (err instanceof Error) {
-                    setError(err.message);
-                } else {
-                    setError("خطای نامشخص");
-                }
+                toast.success("اطلاعات با موفقیت بارگذاری شد!");
+            }catch (err: unknown) {
+                const message = err instanceof Error ? err.message : "خطای نامشخص";
+                setError(message);
+                toast.error(message);
             }
             finally {
                 setLoading(false);
