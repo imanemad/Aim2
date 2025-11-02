@@ -29,6 +29,6 @@ export const links: LinkTypes[] = [
     {
         href: "/application/home",
         title: "Home",
-        icon: <RiHomeLine size={20}/>
+        icon: <RiHomeLine size={18}/>
     },
 ];

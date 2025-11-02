@@ -1,7 +1,7 @@
 "use client"
 
+import FormHeader from "@/components/Form/FormHeader";
 import { useParams } from "next/navigation";
-import { BsArrowRightCircle } from "react-icons/bs";
 
 export default function Page() {
     const params = useParams();
@@ -9,17 +9,13 @@ export default function Page() {
     const titles: Record<string, string> = {
         deposit: "واریز به حساب",
         withdraw: "برداشت از حساب",
-        debtor: "ثبت بدهکار",
-        creditor: "ثبت بستانکار"
     };
-    const title = titles[type] || "ثبت جدید";
+    const title = titles[type];
 
     return (
         <div className="Container">
-            <a href="/application" className="Titr">
-                <BsArrowRightCircle size={18}/>
-                <div>{title}</div>
-            </a>
+            <FormHeader title={title}/>
+            
             <form className="Form">
                 <div className="Form-Item">
                     <label htmlFor="">بابت</label>

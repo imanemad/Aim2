@@ -21,16 +21,10 @@ export default function Contacts() {
       </div>
 
       <div className="Contact">
-        {loading ? (
-          <div className="p-2">Loading...</div>
-        ) : (
+        {loading ? (<div className="p-2">Loading...</div>) : (
           <>
             {contacts.map((item) => (
-              <Link
-                href={`${baseFrontURL}/application/contacts/${item.id}`}
-                className="Item"
-                key={item.id}
-              >
+              <Link href={`${baseFrontURL}/application/contacts/${item.id}`} className="Item" key={item.id}>
                 <div>{item.name}</div>
                 <div className="En">{item.phone}</div>
               </Link>

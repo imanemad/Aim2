@@ -2,9 +2,9 @@
 import { BsArrowRightCircle, BsTrash } from "react-icons/bs";
 
 interface FormHeaderProps {
-    isNew: boolean;
+    isNew?: boolean;
     onDelete?: () => void;
-    title?: string;
+    title: string;
 }
 
 export default function FormHeader({isNew,onDelete,title = "",}: FormHeaderProps) {

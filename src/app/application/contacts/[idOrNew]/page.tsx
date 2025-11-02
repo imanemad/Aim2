@@ -1,43 +1,51 @@
 "use client";
-
-import { IPeople } from "@/services/contacts/types";
-import { useParams, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { createContact, deleteContact, getContact, updateContact } from "@/services/contacts/endPoints";
-import { showConfirmToast } from "@/components/ConfirmToast";
-import FormInput from "@/components/Form/InputText";
+import InputText from "@/components/Form/InputText";
 import FormHeader from "@/components/Form/FormHeader";
+import { useParams, useRouter } from "next/navigation";
+import { createContact, deleteContact, getContact, updateContact } from "@/services/contacts/endPoints";
+import { showConfirmToast } from "@/components/Form/ConfirmToast";
+import { ContactFormValues, contactSchema } from "@/services/contacts/zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useEffect } from "react";
 
 export default function Page() {
   const { idOrNew } = useParams();
   const id = Array.isArray(idOrNew) ? idOrNew[0] : idOrNew;
   const isNew = id === "new";
-  const [contact, setContact] = useState<Partial<IPeople>>({ name: "", phone: "" });
   const router = useRouter();
 
+  const { register, handleSubmit, setValue, formState: { errors } } = useForm<ContactFormValues>({
+    resolver: zodResolver(contactSchema),
+    defaultValues: {
+      name: "",
+      phone: "",
+    },
+  });
+
+  // دریافت اطلاعات در حالت ویرایش
   useEffect(() => {
     if (isNew) return;
-
     const loadContact = async () => {
       try {
         const data = await getContact(id!);
-        setContact(data);
+        setValue("name", data.name);
+        setValue("phone", data.phone);
       } catch {
         toast.error("خطا در دریافت اطلاعات مخاطب");
       }
     };
     loadContact();
-  }, [id, isNew]);
+  }, [id, isNew, setValue]);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const onSubmit = async (data: ContactFormValues) => {
     try {
       if (isNew) {
-        await createContact({ ...contact, userId: 1 });
+        await createContact({ ...data, userId: 1 });
         toast.success("مخاطب ایجاد شد!");
       } else {
-        await updateContact(id!, contact);
+        await updateContact(id!, data);
         toast.success("مخاطب ویرایش شد!");
       }
       router.push("/application/contacts");
@@ -64,21 +72,18 @@ export default function Page() {
         title={isNew ? "مخاطب جدید" : "ویرایش مخاطب"}
       />
 
-      <form className="Form" onSubmit={handleSubmit}>
-        
-        <FormInput 
+      <form onSubmit={handleSubmit(onSubmit)} className="Form">
+        <InputText
           label="نام مخاطب"
-          name="name"
-          value={contact.name ?? ""}
-          onChange={(e) => setContact({ ...contact, name: e.target.value })}
+          {...register("name")}
+          error={errors.name?.message}
         />
 
-        <FormInput 
+        <InputText
           label="شماره تماس"
-          name="phone"
+          {...register("phone")}
+          error={errors.phone?.message}
           className="En"
-          value={contact.phone ?? ""}
-          onChange={(e) => setContact({ ...contact, phone: e.target.value })}
         />
 
         <div className="text-end Form-Item">

@@ -1,33 +1,30 @@
 "use client";
 
-interface FormInputProps {
+import { forwardRef } from "react";
+
+interface FormInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
     label: string;
     name: string;
-    value: string;
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    type?: string;
-    className?: string;
+    error?: string;
 }
 
-export default function FormInput({
-    label,
-    name,
-    value,
-    onChange,
-    type = "text",
-    className = "",
-    }: FormInputProps) {
-    return (
+const InputText = forwardRef<HTMLInputElement, FormInputProps>(
+    ({ label, name, error, className = "", ...rest }, ref) => {
+        return (
         <div className="Form-Item">
-        <label htmlFor={name}>{label}</label>
-        <input
+            <label htmlFor={name}>{label}</label>
+            <input
             id={name}
             name={name}
-            type={type}
-            className={`Input ${className}`}
-            value={value}
-            onChange={onChange}
-        />
+            ref={ref}
+            className={`Input ${error ? "border-red-200!" : ""} ${className}`}
+            {...rest}
+            />
+            {error && <small className="text-red-500 mt-1!">{error}</small>}
         </div>
-    );
-}
+        );
+    }
+);
+
+InputText.displayName = "InputText";
+export default InputText;
