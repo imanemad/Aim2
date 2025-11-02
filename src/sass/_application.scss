@@ -65,6 +65,7 @@
                 border-radius: 8px;
                 background-color: #ffffff99;
                 padding: 20px;
+                padding-bottom: 10px;
                 width: 100%;
             }
 
@@ -147,6 +148,9 @@
                         @media (max-width:576px) {
                             font-size: 16px !important;
                         }
+                    }
+                    .Btn{
+                        margin-top: 15px
                     }
                 }
             }
@@ -307,7 +311,6 @@
                     }
                 }
             }
-
         }
     }
 }

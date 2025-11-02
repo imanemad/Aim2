@@ -57,4 +57,11 @@ $Gray: #8a8a8a;
             background-color: #d10101;
         }
     }
+
+    &-Black-Empty{
+        border: 1px solid;
+        &:hover {
+            background-color: #00000015;
+        }
+    }
 }

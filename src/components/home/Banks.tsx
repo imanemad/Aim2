@@ -1,8 +1,9 @@
+import { baseBackendURL } from "@/lib/config";
 import { IBank } from "@/types/bank";
 import { BsArrowLeft } from "react-icons/bs";
 
 export default async function Banks() {
-    const result= await fetch(`http://localhost:8008/banks`)
+    const result= await fetch(`${baseBackendURL}/banks`)
     const banksData:IBank[] = await result.json()
 
     const totalBalance = banksData.reduce((sum, bank) => sum + bank.balance, 0);

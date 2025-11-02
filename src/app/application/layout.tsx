@@ -11,7 +11,7 @@ export default function Layout({children}:IChildrenProps) {
                     {children}
                 </main>
             <Routs/>
-            <Toaster position="top-left" containerStyle={{top: 60}}/>
+            <Toaster position="top-left" containerStyle={{top: 50}}/>
         </div>
     )
 }

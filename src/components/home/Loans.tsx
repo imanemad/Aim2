@@ -1,7 +1,8 @@
+import { baseBackendURL } from "@/lib/config";
 import { ITransaction } from "@/types/transaction"
 
 export default async function Loans() {
-    const res = await fetch("http://localhost:8008/transactions?_expand=category&_expand=contact", {
+    const res = await fetch(`${baseBackendURL}/transactions?_expand=category&_expand=contact`, {
         cache: "no-store",
     })
     const allTransactions: (ITransaction & {

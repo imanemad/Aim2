@@ -15,7 +15,7 @@ export const useGetContacts = () => {
             try {
                 const data = await getContacts();
                 setData(data);
-                toast.success("اطلاعات با موفقیت بارگذاری شد!");
+                // toast.success("اطلاعات با موفقیت بارگذاری شد!");
             }catch (err: unknown) {
                 const message = err instanceof Error ? err.message : "خطای نامشخص";
                 setError(message);

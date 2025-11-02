@@ -3,95 +3,85 @@
 import { IPeople } from "@/services/contacts/types";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { BsArrowRightCircle } from "react-icons/bs";
-import Link from "next/link";
+import toast from "react-hot-toast";
+import { createContact, deleteContact, getContact, updateContact } from "@/services/contacts/endPoints";
+import { showConfirmToast } from "@/components/ConfirmToast";
+import FormInput from "@/components/Form/InputText";
+import FormHeader from "@/components/Form/FormHeader";
 
 export default function Page() {
   const { idOrNew } = useParams();
-  const isNew = idOrNew === "new";
-  const [contact, setContact] = useState<Partial<IPeople>>({
-    name: "",
-    phone: "",
-  });
+  const id = Array.isArray(idOrNew) ? idOrNew[0] : idOrNew;
+  const isNew = id === "new";
+  const [contact, setContact] = useState<Partial<IPeople>>({ name: "", phone: "" });
   const router = useRouter();
 
   useEffect(() => {
     if (isNew) return;
-    const getContact = async () => {
-      const res = await fetch(`http://localhost:8008/contacts/${idOrNew}`);
-      if (res.ok) {
-        const data = await res.json();
+
+    const loadContact = async () => {
+      try {
+        const data = await getContact(id!);
         setContact(data);
+      } catch {
+        toast.error("خطا در دریافت اطلاعات مخاطب");
       }
     };
-    getContact();
-  }, [idOrNew, isNew]);
+    loadContact();
+  }, [id, isNew]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (isNew) {
-      await fetch("http://localhost:8008/contacts", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...contact, userId: 1 }),
-      });
-    } else {
-      await fetch(`http://localhost:8008/contacts/${idOrNew}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(contact),
-      });
+    try {
+      if (isNew) {
+        await createContact({ ...contact, userId: 1 });
+        toast.success("مخاطب ایجاد شد!");
+      } else {
+        await updateContact(id!, contact);
+        toast.success("مخاطب ویرایش شد!");
+      }
+      router.push("/application/contacts");
+    } catch {
+      toast.error("خطا در ذخیره اطلاعات");
     }
-    router.push("/application/contacts"); // برگشت به لیست
+  };
+
+  const handleDelete = (id: string) => {
+    showConfirmToast({
+      message: "آیا مطمئن هستید از حذف این مخاطب؟",
+      onConfirm: async () => {
+        await deleteContact(id);
+        router.push("/application/contacts");
+      },
+    });
   };
 
   return (
     <div className="Container">
-      <Link href="/application/contacts" className="Titr">
-        <BsArrowRightCircle size={18} />
-        <div>{isNew ? "ایجاد مخاطب" : "ویرایش مخاطب"}</div>
-      </Link>
+      <FormHeader
+        isNew={isNew}
+        onDelete={() => handleDelete(id!)}
+        title={isNew ? "مخاطب جدید" : "ویرایش مخاطب"}
+      />
 
       <form className="Form" onSubmit={handleSubmit}>
-        <div className="Form-Item">
-          <label>نام مخاطب</label>
-          <input
-            type="text"
-            value={contact.name ?? ""}
-            onChange={(e) => setContact({ ...contact, name: e.target.value })}
-          />
-        </div>
+        
+        <FormInput 
+          label="نام مخاطب"
+          name="name"
+          value={contact.name ?? ""}
+          onChange={(e) => setContact({ ...contact, name: e.target.value })}
+        />
 
-        <div className="Form-Item">
-          <label>شماره تماس</label>
-          <input
-            type="text"
-            className="En"
-            value={contact.phone ?? ""}
-            onChange={(e) => setContact({ ...contact, phone: e.target.value })}
-          />
-        </div>
+        <FormInput 
+          label="شماره تماس"
+          name="phone"
+          className="En"
+          value={contact.phone ?? ""}
+          onChange={(e) => setContact({ ...contact, phone: e.target.value })}
+        />
 
         <div className="text-end Form-Item">
-          {!isNew && (
-            <button
-              type="button" // ⚠️ حتما type="button" بذار تا فرم submit نشه
-              className="Btn Btn-Red m-0 mt-4"
-              onClick={async () => {
-                if (
-                  confirm("آیا مطمئن هستید که می‌خواهید این مخاطب را حذف کنید؟")
-                ) {
-                  await fetch(`http://localhost:8008/contacts/${idOrNew}`, {
-                    method: "DELETE",
-                  });
-                  router.push("/application/contacts"); // برگشت به لیست بعد از حذف
-                }
-              }}
-            >
-              حذف
-            </button>
-          )}
-
           <button className="Btn Btn-Black m-0 mt-4" type="submit">
             {isNew ? "ذخیره" : "ویرایش"}
           </button>

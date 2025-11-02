@@ -1,3 +1,4 @@
+import { baseBackendURL } from "@/lib/config";
 import { ICategory } from "@/types/category";
 import { ITransactionList } from "@/types/transactionList";
 import moment from "moment-jalaali";
@@ -7,10 +8,10 @@ import { FaCaretLeft } from "react-icons/fa";
 export default async function page() {
     const userId = 1;
 
-    const result = await fetch(`http://localhost:8008/transactions`)
+    const result = await fetch(`${baseBackendURL}/transactions`)
     const transactions:ITransactionList[] = await result.json()
 
-    const resultCategory = await fetch(`http://localhost:8008/categories?userId=${userId}`);
+    const resultCategory = await fetch(`${baseBackendURL}/categories?userId=${userId}`);
     const categories:ICategory[] = await resultCategory.json()
 
     return (
