@@ -11,6 +11,7 @@ npm i zod
 npm install @conform-to/react @conform-to/zod  
 npm install @types/moment-jalaali  
 npm install moment-jalaali  
+npm install axios
 npm install json-server  
 
 ## Start Database ( in new TERMINAL ) Port 8008
