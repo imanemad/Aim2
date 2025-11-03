@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: "مدیریت واریز و برداشت",
 };
 
-export default function RootLayout({children,}:IChildrenProps) {
+export default function RootLayout({children}:IChildrenProps) {
   return (
     <html lang="fa" dir="rtl">
       <body>

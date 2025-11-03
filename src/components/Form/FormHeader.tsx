@@ -1,25 +1,26 @@
 "use client";
-import { BsArrowRightCircle, BsTrash } from "react-icons/bs";
+
+import { BsArrowRightCircle } from "react-icons/bs";
+import { useRouter } from "next/navigation";
 
 interface FormHeaderProps {
-    isNew?: boolean;
-    onDelete?: () => void;
     title: string;
+    children?: React.ReactNode;
 }
 
-export default function FormHeader({isNew,onDelete,title = "",}: FormHeaderProps) {
+export default function FormHeader({ title = "", children }: FormHeaderProps) {
+    const router = useRouter();
+
     return (
         <div className="FlexBetween mx-2">
-        <button className="Titr" onClick={() => history.back()}>
-            <BsArrowRightCircle size={18} />
-            <div>{title}</div>
-        </button>
-
-        {!isNew && onDelete && (
-            <button onClick={onDelete}>
-                <BsTrash size={19} className="mb-2 text-red-500" />
+            <button className="Titr" onClick={() => router.back()}>
+                <BsArrowRightCircle size={18} />
+                <div>{title}</div>
             </button>
-        )}
+
+            <div className="flex gap-4 mb-3">
+                {children}
+            </div>
         </div>
     );
 }

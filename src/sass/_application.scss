@@ -70,6 +70,21 @@
                 width: 100%;
             }
 
+            .Card{
+                @include Card;
+                padding:10px 20px 15px;
+                margin-bottom: 10px;
+                overflow: hidden;
+                .Title{
+                    color: #acacac;
+                    margin-right: -5px;
+                    padding-bottom: 10px;
+                }
+                .Details{
+                    padding: 0 7px 0 0;
+                }
+            }
+
             .Titr{
                 display: flex;
                 align-items: center;
