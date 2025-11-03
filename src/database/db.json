@@ -24,24 +24,45 @@
       "id": "5b69"
     },
     {
-      "id": "b85f",
-      "name": "vsvs",
-      "phone": "09110000000",
+      "id": "25e5",
+      "name": "هادی",
+      "phone": "09126105062",
       "userId": 1
     }
   ],
   "banks": [
     {
-      "id": "1",
-      "userId": 1,
       "bankName": "بانک شهر",
-      "balance": 1000000
+      "balance": 1310724,
+      "id": "1"
     },
     {
-      "id": "2",
-      "userId": 1,
-      "bankName": "موجودی نقد",
-      "balance": 2000000
+      "bankName": "ارز دلار",
+      "balance": 2500000,
+      "id": "2"
+    },
+    {
+      "bankName": "ارز دینار",
+      "balance": 4500000,
+      "id": "6ed8"
+    },
+    {
+      "id": "3d47",
+      "bankName": "بانک پارسیان",
+      "balance": 322300,
+      "userId": 1
+    },
+    {
+      "id": "dd72",
+      "bankName": "بانک پاسارگاد",
+      "balance": 3035460,
+      "userId": 1
+    },
+    {
+      "id": "6967",
+      "bankName": "مفید",
+      "balance": 133528289,
+      "userId": 1
     }
   ],
   "categories": [

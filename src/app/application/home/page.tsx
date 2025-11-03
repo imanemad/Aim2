@@ -10,8 +10,8 @@ export default function page() {
             <div className="Home">
                     <div className="Profile">
                         <div className="FlexG8">
-                            <BsPerson size={17}/>
-                            <div className="Name">iman@example.com</div>
+                            <BsPerson size={18}/>
+                            <div className="mt-0.5">iman@example.com</div>
                         </div>
                         <Link href="/">
                             <IoPower size={18}/>

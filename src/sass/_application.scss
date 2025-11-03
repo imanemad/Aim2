@@ -54,6 +54,7 @@
 
     &-Main{
         height: calc(100dvh - 90px);
+        overflow-y: auto;
         padding-top: 10px;
 
         .Container{
@@ -233,6 +234,7 @@
                 .Profile{
                     @include Card;
                     @extend %FlexBetween;
+                    padding: 15px 20px;
                 }
 
                 .Loans{
@@ -250,7 +252,6 @@
                         }
                     }
                 }
-
                 
                 .Chart{
                     @include Card;

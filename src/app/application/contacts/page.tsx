@@ -16,7 +16,7 @@ export default function Contacts() {
           <FiSearch size={20} />
         </div>
         <Link href="/application/contacts/new" className="Btn Btn-Black">
-          جدید
+          مخاطب جدید
         </Link>
       </div>
 
