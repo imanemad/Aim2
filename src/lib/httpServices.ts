@@ -11,8 +11,11 @@ const httpServices = axios.create({
 // (Request)
 httpServices.interceptors.request.use(
     (config) => {
-        const token = localStorage.getItem("token");
-        if (token) config.headers.Authorization = `Bearer ${token}`;
+        if (typeof window !== 'undefined') {
+            const token = localStorage.getItem("token");
+            if (token) config.headers.Authorization = `Bearer ${token}`;
+        }
+
         return config;
     },
     (error) => Promise.reject(error)
@@ -22,11 +25,14 @@ httpServices.interceptors.request.use(
 httpServices.interceptors.response.use(
     (response) => response,
     (error) => {
-        const message =
-        error.response?.data?.message || error.message || "خطای نامشخص";
-        console.error("HTTP Error:", message);
+        const apiMessage = 
+            error.response?.data?.detail || // Django REST Framework استاندارد
+            error.response?.data?.message || 
+            error.response?.data?.error || 
+            error.message || 
+            "خطای نامشخص";
 
-        return Promise.reject(new Error(message));
+        return Promise.reject(new Error(apiMessage));
     }
 );
 

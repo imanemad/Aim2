@@ -3,16 +3,23 @@ import toast from "react-hot-toast";
 import InputText from "@/components/Form/InputText";
 import FormHeader from "@/components/Form/FormHeader";
 import { useParams, useRouter } from "next/navigation";
-import { getContact, updateContact } from "@/services/contacts/endPoints";
 import { ContactFormValues, contactSchema } from "@/services/contacts/zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect } from "react";
+import { useEffect, useTransition } from "react";
+import { useQueryClient } from "@tanstack/react-query";
+import { useGetContactQuery } from "@/services/contacts/hooks";
+import { updateContactAction } from "@/actions/contacts/update.action";
+import { contactsKeys } from "@/services/contacts/contacts.queryKeys";
 
 export default function Page() {
   const params = useParams<{ id: string }>();
   const id = params.id;
   const router = useRouter();
+  const queryClient = useQueryClient();
+  const [isPending, startTransition] = useTransition();
+
+  const { data: contact, isError, error } = useGetContactQuery(id);
 
   const { register, handleSubmit, setValue, formState: { errors } } = useForm<ContactFormValues>({
     resolver: zodResolver(contactSchema),
@@ -23,26 +30,32 @@ export default function Page() {
   });
 
   useEffect(() => {
-    const loadContact = async () => {
-      try {
-        const data = await getContact(id!);
-        setValue("name", data.name);
-        setValue("phone", data.phone);
-      } catch {
-        toast.error("خطا در دریافت اطلاعات مخاطب");
-      }
-    };
-    loadContact();
-  }, [id, setValue]);
-
-  const onSubmit = async (data: ContactFormValues) => {
-    try {
-      await updateContact(id!, data);
-      toast.success("مخاطب ویرایش شد!");
-      router.push("/application/contacts");
-    } catch {
-      toast.error("خطا در ذخیره اطلاعات");
+    if (contact) {
+      setValue("name", contact.name);
+      setValue("phone", contact.phone);
     }
+  }, [contact, setValue]);
+
+  if (isError) {
+    toast.error(error.message);
+    return <div className="ErrorState">خطا در بارگذاری اطلاعات مخاطب.</div>;
+  }
+
+  const onSubmit = (formData: ContactFormValues) => {
+    startTransition(async () => {
+      const result = await updateContactAction(id, { ...formData, userId: 1 });
+
+      if (result.success) {
+        toast.success(result.message!);
+
+        queryClient.invalidateQueries({ queryKey: contactsKeys.list() });
+        queryClient.invalidateQueries({ queryKey: contactsKeys.detail(id) });
+
+        router.push("/application/contacts");
+      } else {
+        toast.error(result.message || "خطا در ذخیره اطلاعات");
+      }
+    });
   };
 
   return (
@@ -54,6 +67,7 @@ export default function Page() {
           label="نام مخاطب"
           {...register("name")}
           error={errors.name?.message}
+          disabled={isPending}
         />
 
         <InputText
@@ -61,10 +75,17 @@ export default function Page() {
           {...register("phone")}
           error={errors.phone?.message}
           className="En"
+          disabled={isPending}
         />
 
         <div className="text-end Form-Item">
-          <button className="Btn Btn-Black m-0 mt-4" type="submit">ویرایش</button>
+          <button
+            className={`Btn Btn-Black m-0 mt-4 ${isPending ? "opacity-50" : ""}`}
+            type="submit"
+            disabled={isPending}
+          >
+            {isPending ? "در حال ذخیره..." : "ویرایش"}
+          </button>
         </div>
       </form>
     </div>

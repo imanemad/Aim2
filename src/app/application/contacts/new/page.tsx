@@ -3,30 +3,41 @@ import toast from "react-hot-toast";
 import InputText from "@/components/Form/InputText";
 import FormHeader from "@/components/Form/FormHeader";
 import { useRouter } from "next/navigation";
-import { createContact} from "@/services/contacts/endPoints";
+import { createContactAction } from "@/actions/contacts/create.action";
 import { ContactFormValues, contactSchema } from "@/services/contacts/zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useQueryClient } from "@tanstack/react-query";
+import { useTransition } from "react";
+import { contactsKeys } from "@/services/contacts/contacts.queryKeys";
 
 export default function Page() {
     const router = useRouter();
+    const queryClient = useQueryClient();
+    const [isPending, startTransition] = useTransition();
 
     const { register, handleSubmit, formState: { errors } } = useForm<ContactFormValues>({
         resolver: zodResolver(contactSchema),
         defaultValues: {
-        name: "",
-        phone: "",
+            name: "",
+            phone: "",
         },
     });
 
-    const onSubmit = async (data: ContactFormValues) => {
-        try {
-            await createContact({ ...data, userId: 1 });
-            toast.success("مخاطب ایجاد شد!");
-            router.push("/application/contacts");
-        } catch {
-            toast.error("خطا در ذخیره اطلاعات");
-        }
+    const onSubmit = (data: ContactFormValues) => {
+        startTransition(async () => {
+            const result = await createContactAction({ ...data, userId: 1 });
+
+            if (result.success) {
+                toast.success(result.message!);
+
+                queryClient.invalidateQueries({ queryKey: contactsKeys.list() });
+
+                router.push("/application/contacts");
+            } else {
+                toast.error(result.message || "خطا در ذخیره اطلاعات");
+            }
+        });
     };
 
     return (
@@ -48,7 +59,13 @@ export default function Page() {
                 />
 
                 <div className="text-end Form-Item">
-                    <button className="Btn Btn-Black m-0 mt-4" type="submit">ذخیره</button>
+                    <button
+                        className={`Btn Btn-Black m-0 mt-4 ${isPending ? "opacity-50" : ""}`}
+                        type="submit"
+                        disabled={isPending}
+                    >
+                        {isPending ? "در حال ذخیره..." : "ذخیره"}
+                    </button>
                 </div>
             </form>
         </div>

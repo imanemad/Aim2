@@ -1,17 +1,17 @@
 import NavApp from "@/components/NavApp";
 import Routs from "@/components/Routs";
-import { Toaster } from "react-hot-toast";
-
+import { ApplicationProviders } from "./providers";
 
 export default function Layout({children}:IChildrenProps) {
     return (
-        <div className="App">
-            <NavApp/>
-                <main className="App-Main">
-                    {children}
-                </main>
-            <Routs/>
-            <Toaster position="top-left" containerStyle={{top: 50}}/>
-        </div>
+        <ApplicationProviders>
+            <div className="App">
+                <NavApp/>
+                    <main className="App-Main">
+                        {children}
+                    </main>
+                <Routs/>
+            </div>
+        </ApplicationProviders>
     )
 }

@@ -1,12 +1,24 @@
 "use client";
 
 import { baseFrontURL } from "@/lib/config";
-import { useGetContacts } from "@/services/contacts/hooks";
+import { useGetContactsQuery } from "@/services/contacts/hooks";
 import Link from "next/link";
+import toast from "react-hot-toast";
 import { FiSearch } from "react-icons/fi";
 
 export default function Contacts() {
-  const { data: contacts, loading } = useGetContacts();
+  const { 
+    data: contacts,
+    isLoading,      
+    isError,        
+    error           
+  } = useGetContactsQuery();
+
+  // ۳. مدیریت صریح خطا
+  if (isError) {
+      toast.error(error.message); 
+      return <div className="ErrorState">خطا در بارگذاری مخاطبین.</div>
+  }
 
   return (
     <div className="Container">
@@ -21,9 +33,9 @@ export default function Contacts() {
       </div>
 
       <div className="Contact">
-        {loading ? (<div className="p-2">Loading...</div>) : (
+        {isLoading ? (<div className="p-2">Loading...</div>) : (
           <>
-            {contacts.map((item) => (
+            {contacts?.map((item) => (
               <Link href={`${baseFrontURL}/application/contacts/${item.id}`} className="Item" key={item.id}>
                 <div>{item.name}</div>
                 <div className="En">{item.phone}</div>

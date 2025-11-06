@@ -15,6 +15,7 @@ npm i moment-jalaali
 npm i axios  
 npm i json-server  
 npm i react-hook-form  
+npm install @tanstack/react-query  
 
 ## Start Database ( in new TERMINAL ) Port 8008
 json-server --watch src/database/db.json --port 8008

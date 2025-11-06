@@ -1,63 +1,21 @@
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { getContact, getContacts } from "../data-fetchers/contacts.fetchers"; // از فایل جدید fetcher
+import { contactsKeys } from "./contacts.queryKeys";
 import { IPeople } from "./types";
-import { getContact, getContacts } from "./endPoints";
-import toast from "react-hot-toast";
 
-export const useGetContacts = () => {
-    const [data, setData] = useState<IPeople[]>([]);
-    const [loading, setLoading] = useState<boolean>(false);
-    const [error, setError] = useState<string | null>(null);
-
-    useEffect(() => {
-        async function load() {
-            setLoading(true);
-            setError(null);
-            try {
-                const data = await getContacts();
-                setData(data);
-                // toast.success("اطلاعات با موفقیت بارگذاری شد!");
-            }catch (err: unknown) {
-                const message = err instanceof Error ? err.message : "خطای نامشخص";
-                setError(message);
-                toast.error(message);
-            }
-            finally {
-                setLoading(false);
-            }
-        }
-        load();
-    }, []);
-
-    return { data, loading, error };
+export const useGetContactsQuery = () => {
+    return useQuery({
+        queryKey: contactsKeys.list(), 
+        queryFn: getContacts,
+        staleTime: 5 * 60 * 1000, // داده تا ۵ دقیقه 'تازه' تلقی می‌شود
+    });
 };
 
-
-
-export const useGetContact = (id: string) => {
-    const [data, setData] = useState<Partial<IPeople> | null>(null);
-    const [loading, setLoading] = useState<boolean>(false);
-    const [error, setError] = useState<string | null>(null);
-
-    useEffect(() => {
-        if (!id) return;
-
-        async function load() {
-        setLoading(true);
-        setError(null);
-        try {
-            const data = await getContact(id);
-            setData(data);
-        } catch (err: unknown) {
-            const message = err instanceof Error ? err.message : "خطای نامشخص";
-            setError(message);
-            toast.error(message);
-        } finally {
-            setLoading(false);
-        }
-        }
-
-        load();
-    }, [id]);
-
-    return { data, loading, error };
+export const useGetContactQuery = (id: string) => {
+    return useQuery<IPeople, Error>({ // اضافه کردن نوع خطا برای صراحت
+        queryKey: contactsKeys.detail(id),
+        queryFn: () => getContact(id),
+        // این کوئری را اجرا نکن اگر ID وجود ندارد
+        enabled: !!id, 
+    });
 };

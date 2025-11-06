@@ -21,13 +21,8 @@ export function showConfirmToast({ message, onConfirm }: ConfirmToastProps) {
             <button
                 className="Btn Btn-Red"
                 onClick={async () => {
-                try {
-                    await onConfirm();
-                    toast.success("عملیات با موفقیت انجام شد!", { duration: 2000 });
-                } catch {
-                    toast.error("خطا در انجام عملیات");
-                }
-                toast.dismiss(t.id);
+                    await onConfirm(); 
+                    toast.dismiss(t.id);
                 }}
             >
                 بله
