@@ -1,6 +1,7 @@
 import BiCartLeftFill from "@/components/icons/BiCartLeftFill";
 import BiDashCircleFill from "@/components/icons/BiDashCircleFill";
 import BiPlusCircleFill from "@/components/icons/BiPlusCircleFill";
+import BiSearch from "@/components/icons/BiSearch";
 import { baseBackendURL } from "@/lib/config";
 import { ICategory } from "@/types/category";
 import { ITransactionList } from "@/types/transactionList";
@@ -20,9 +21,7 @@ export default async function page() {
             <div className="FlexBetween">
                 <div className="Search">
                     <input type="text" placeholder="جستجوی تراکنش"/>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-search" viewBox="0 0 16 16">
-                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
-                    </svg>
+                    <BiSearch size={19}/>
                 </div>
                 <button className="Btn Btn-Black">
                     فیلتر تراکنش ها

@@ -1,10 +1,10 @@
 "use client";
 
+import BiSearch from "@/components/icons/BiSearch";
 import { baseFrontURL } from "@/lib/config";
 import { useGetContactsQuery } from "@/services/contacts/hooks";
 import Link from "next/link";
 import toast from "react-hot-toast";
-import { FiSearch } from "react-icons/fi";
 
 export default function Contacts() {
   const { 
@@ -25,7 +25,7 @@ export default function Contacts() {
       <div className="FlexBetween">
         <div className="Search">
           <input type="text" placeholder="جستجوی مخاطب" />
-          <FiSearch size={20} />
+          <BiSearch size={19} />
         </div>
         <Link href="/application/contacts/new" className="Btn Btn-Black">
           مخاطب جدید

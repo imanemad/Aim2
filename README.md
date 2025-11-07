@@ -6,7 +6,6 @@ npm run dev
 
 ## libraries
 npm i sass  
-npm i react-icons --save  
 npm i zod  
 npm i @conform-to/react @conform-to/zod   
 npm i @hookform/resolvers  
