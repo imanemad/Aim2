@@ -1,7 +1,7 @@
 "use client"
 import { useGetBanks } from "@/services/banks/hooks";
 import Link from "next/link";
-import { BsArrowLeft } from "react-icons/bs";
+import BiArrowLeft from "../icons/BiArrowLeft";
 
 export default function Banks() {
     const {data: banks, loading} = useGetBanks()
@@ -19,7 +19,7 @@ export default function Banks() {
                         <Link href={`/application/home/${item.id}`} className="Item" key={item.id}>
                             <div className="Name">{item.bankName}</div>
                             <div className="En">{item.balance.toLocaleString()}</div>
-                            <BsArrowLeft size={16} className="bi bi-arrow-left"/>
+                            <BiArrowLeft size={16} className="bi bi-arrow-left"/>
                         </Link>
                     ))}
                     <Link href="/application/home/new-bank" className="Btn Btn-Black m-0! mb-2!">صندوق جدید</Link>

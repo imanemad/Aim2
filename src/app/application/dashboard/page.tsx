@@ -1,8 +1,8 @@
 import Banks from "@/components/dashboard/Banks";
 import Loans from "@/components/dashboard/Loans";
+import BiPerson from "@/components/icons/BiPerson";
+import BiPower from "@/components/icons/BiPower";
 import Link from "next/link";
-import { BsPerson } from "react-icons/bs";
-import { IoPower } from "react-icons/io5";
 
 export default function page() {
     return (
@@ -10,11 +10,11 @@ export default function page() {
             <div className="Home">
                     <div className="Profile">
                         <div className="FlexG8">
-                            <BsPerson size={18}/>
+                            <BiPerson size={18}/>
                             <div className="mt-0.5">iman@example.com</div>
                         </div>
                         <Link href="/">
-                            <IoPower size={18}/>
+                            <BiPower size={18}/>
                         </Link>
                     </div>
 
