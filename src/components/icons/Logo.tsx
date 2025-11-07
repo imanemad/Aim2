@@ -1,7 +1,5 @@
 import { IIconProps } from "@/types/iconProps";
 
-
-
 export default function Logo({
     size = 48,
     color = "currentColor",

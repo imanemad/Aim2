@@ -1,8 +1,8 @@
+import BiHome from "@/components/icons/BiHome";
+import BiListNested from "@/components/icons/BiListNested";
+import BiPeople from "@/components/icons/BiPeople";
+import BiPlusCircle from "@/components/icons/BiPlusCircle";
 import { JSX } from "react"
-import { BsListNested } from "react-icons/bs";
-import { GoPeople, GoPlusCircle } from "react-icons/go";
-import { RiHomeLine } from "react-icons/ri";
-
 
 interface LinkTypes{
     href: string,
@@ -14,21 +14,21 @@ export const links: LinkTypes[] = [
     {
         href: "/application",
         title: "Add",
-        icon: <GoPlusCircle size={21}/>
+        icon: <BiPlusCircle size={19}/>
     },
     {
         href: "/application/contacts",
         title: "contacts",
-        icon: <GoPeople  size={20}/>
+        icon: <BiPeople  size={20}/>
     },
     {
         href: "/application/list",
         title: "list",
-        icon: <BsListNested size={20}/>
+        icon: <BiListNested size={20}/>
     },
     {
-        href: "/application/home",
+        href: "/application/dashboard",
         title: "Home",
-        icon: <RiHomeLine size={18}/>
+        icon: <BiHome size={19}/>
     },
 ];

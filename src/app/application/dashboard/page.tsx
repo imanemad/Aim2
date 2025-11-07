@@ -1,5 +1,5 @@
-import Banks from "@/components/home/Banks";
-import Loans from "@/components/home/Loans";
+import Banks from "@/components/dashboard/Banks";
+import Loans from "@/components/dashboard/Loans";
 import Link from "next/link";
 import { BsPerson } from "react-icons/bs";
 import { IoPower } from "react-icons/io5";

@@ -1,9 +1,10 @@
+import BiCartLeftFill from "@/components/icons/BiCartLeftFill";
+import BiDashCircleFill from "@/components/icons/BiDashCircleFill";
+import BiPlusCircleFill from "@/components/icons/BiPlusCircleFill";
 import { baseBackendURL } from "@/lib/config";
 import { ICategory } from "@/types/category";
 import { ITransactionList } from "@/types/transactionList";
 import moment from "moment-jalaali";
-import { BsFillDashCircleFill, BsFillPlusCircleFill } from "react-icons/bs";
-import { FaCaretLeft } from "react-icons/fa";
 
 export default async function page() {
     const userId = 1;
@@ -36,13 +37,13 @@ export default async function page() {
                                 <div className="Title">
                                     {category ? category.name : "بدون دسته"}
                                 </div>
-                                <FaCaretLeft size={20} />
+                                <BiCartLeftFill />
                             </div>
                             <div className="FlexBetween mt-3">
                                 <div className="FlexG8">
                                     {item.type === "deposit" 
-                                        ? <BsFillPlusCircleFill className="Plus" size={15} /> 
-                                        : <BsFillDashCircleFill className="Dash" size={15} />
+                                        ? <BiPlusCircleFill className="Plus" size={15} /> 
+                                        : <BiDashCircleFill className="Dash" size={15} />
                                     }
                                     <small className="En">{item.amount.toLocaleString()}</small>
                                 </div>

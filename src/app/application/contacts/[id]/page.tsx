@@ -4,23 +4,21 @@ import toast from "react-hot-toast";
 import FormHeader from "@/components/Form/FormHeader";
 import { useParams, useRouter } from "next/navigation";
 import { showConfirmToast } from "@/components/Form/ConfirmToast";
-import { BsTrash } from "react-icons/bs";
-import { PiGearSixLight } from "react-icons/pi";
 import { useGetContactQuery } from "@/services/contacts/hooks";
 import { deleteContactAction } from "@/actions/contacts/delete.action";
-import { useTransition } from "react";
 import { useQueryClient } from "@tanstack/react-query";  // 👈 اضافه شد
 import { contactsKeys } from "@/services/contacts/contacts.queryKeys"; // 👈 کلیدهای کش
+import BiGear from "@/components/icons/BiGear";
+import BiTrash from "@/components/icons/BiTrash";
+import { useLoading } from "@/context/LoadingContext";
 
 export default function Page() {
     const params = useParams<{ id: string }>();
     const id = params.id;
     const router = useRouter(); // ۲. مقداردهی اولیه useRouter
     const queryClient = useQueryClient(); // 👈 کنترل کش RQ
-    
+    const { showLoader, hideLoader } = useLoading();
     const { data: contact, isLoading, isError, error } = useGetContactQuery(id);
-
-    const [isPending, startTransition] = useTransition();
 
     if (isError) {
         toast.error(error.message);
@@ -30,10 +28,10 @@ export default function Page() {
     const handleDelete = () => {
         showConfirmToast({
             message: "آیا مطمئن هستید از حذف این مخاطب؟",
-            onConfirm: () => {
-                startTransition(async () => {
+            onConfirm: async () => {
+                showLoader();
                 const result = await deleteContactAction(id);
-
+                hideLoader()
                 if (result.success) {
                     toast.success(result.message);
                     queryClient.invalidateQueries({ queryKey: contactsKeys.list() });
@@ -41,7 +39,6 @@ export default function Page() {
                 } else if (result.message) {
                     toast.error(result.message);
                 }
-                });
             },
         });
     };
@@ -50,11 +47,11 @@ export default function Page() {
         <div className="Container">
             <FormHeader title="طرف حساب">
                 <Link href={`/application/contacts/${id}/edit`} >
-                    <PiGearSixLight size={21} className="text-blue-600"/>
+                    <BiGear size={18} className="text-blue-600 mt-px"/>
                 </Link>
-                <BsTrash size={19} 
-                    className={`text-red-500 Cursor mt-px ${isPending ? 'opacity-50 pointer-events-none' : ''}`} 
-                    onClick={handleDelete}/>
+                <button onClick={handleDelete}>
+                    <BiTrash size={19} className="text-red-500 Cursor"/>
+                </button>
             </FormHeader>
             <div className="Card ">
                 {isLoading 

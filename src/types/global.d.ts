@@ -7,3 +7,9 @@ interface IPageProps {
         type: string
     }
 }
+
+interface IconProps {
+    size?: number;          
+    className?: string;    
+    onClick?: ()=>void;  
+}

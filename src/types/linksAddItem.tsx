@@ -1,5 +1,6 @@
+import BiDownload from "@/components/icons/BiDownload";
+import BiUpload from "@/components/icons/BiUpload";
 import { JSX } from "react"
-import { BsDownload, BsUpload } from "react-icons/bs";
 
 interface LinkTypes{
     url:string,
@@ -11,11 +12,11 @@ export const linksAddItem: LinkTypes[] = [
     {
         url: "deposit",
         title: "واریز به حساب",
-        icon: <BsDownload size={18.5}/>
+        icon: <BiDownload size={18}/>
     },
     {
         url: "withdraw",
         title: "برداشت از حساب",
-        icon: <BsUpload size={17}/>
+        icon: <BiUpload size={17}/>
     },
 ];

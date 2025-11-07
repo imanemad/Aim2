@@ -19,7 +19,31 @@ img, svg {
 }
 
 body {
+   position: relative;
    min-width: 320px !important;
+   .Loading{
+      @extend %GridCenter;
+      position: absolute;
+      top: 0;
+      width: 100dvw;
+      height: 100dvh;
+      background-color: #00000080;
+      backdrop-filter: blur(5px);
+      .Logo{
+         margin-top: -20px;
+         font-size: 40px !important;
+         color: #fff !important;
+         animation: loading 2s ease-in-out infinite;
+      }
+      @keyframes loading {
+         0%,100%{
+            transform: scale(0.8)
+         }
+         50%{
+            transform: scale(1)
+         }
+      }
+   }
 }
 
 a {

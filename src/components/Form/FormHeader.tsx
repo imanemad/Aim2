@@ -1,7 +1,7 @@
 "use client";
 
-import { BsArrowRightCircle } from "react-icons/bs";
 import { useRouter } from "next/navigation";
+import BiArrowRightCircle from "../icons/BiArrowRightCircle";
 
 interface FormHeaderProps {
     title: string;
@@ -14,7 +14,7 @@ export default function FormHeader({ title = "", children }: FormHeaderProps) {
     return (
         <div className="FlexBetween mx-2">
             <button className="Titr" onClick={() => router.back()}>
-                <BsArrowRightCircle size={18} />
+                <BiArrowRightCircle size={18}/>
                 <div>{title}</div>
             </button>
 
