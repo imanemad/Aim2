@@ -1,5 +1,6 @@
 "use client";
 import Logo from "@/components/icons/Logo";
+import Loader from "@/components/ui/Loader";
 import { useState, useContext, createContext } from "react";
 
 const LoadingContext = createContext({
@@ -22,9 +23,7 @@ export const LoadingProvider = ({
     <LoadingContext.Provider value={{ isLoading, showLoader, hideLoader }}>
       {children}
       {isLoading && (
-        <div className="Loading">
-          <Logo size={70} className="Logo" />
-        </div>
+        <Loader/>
       )}
     </LoadingContext.Provider>
   );
