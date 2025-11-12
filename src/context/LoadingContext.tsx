@@ -1,5 +1,4 @@
 "use client";
-import Logo from "@/components/icons/Logo";
 import Loader from "@/components/ui/Loader";
 import { useState, useContext, createContext } from "react";
 
