@@ -34,11 +34,6 @@
   ],
   "banks": [
     {
-      "bankName": "بانک شهر",
-      "balance": 1310724,
-      "id": "1"
-    },
-    {
       "bankName": "ارز دلار",
       "balance": 2500000,
       "id": "2"
@@ -55,16 +50,22 @@
       "userId": 1
     },
     {
-      "id": "dd72",
       "bankName": "بانک پاسارگاد",
-      "balance": 3035460,
-      "userId": 1
+      "balance": 547500,
+      "userId": 1,
+      "id": "dd72"
     },
     {
-      "id": "6967",
       "bankName": "مفید",
-      "balance": 133528289,
-      "userId": 1
+      "balance": 109528300,
+      "userId": 1,
+      "id": "6967"
+    },
+    {
+      "bankName": "بانک شهر",
+      "balance": 2786828,
+      "userId": 1,
+      "id": "e708"
     }
   ],
   "categories": [

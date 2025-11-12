@@ -1,20 +1,20 @@
-import { useEffect, useState } from "react"
-import { getBanks } from "./endpoints"
-import { IBank } from "./bank"
+import { useQuery } from "@tanstack/react-query";
+import { banksKeys } from "./banks.queryKeys";
+import { IBank } from "./types";
+import { getBank, getBanks } from "../data-fetchers/banks.fetchers";
 
-export const useGetBanks = ()=>{
-    const [data, setData] = useState<IBank[]>([])
-    const [loading, setLoading] = useState<boolean>(false)
-    
-    useEffect(()=>{
-        async function getData(){
-            setLoading(true)
-            const data = await getBanks()
-            setData(data)
-            setLoading(false)
-        } 
-        getData()
-    },[])
+export const useGetBanksQuery = () => {
+    return useQuery({
+        queryKey: banksKeys.list(), 
+        queryFn: getBanks,
+        staleTime: 5 * 60 * 1000,
+    });
+};
 
-    return {data, loading}
-}
+export const useGetBankQuery = (id: string) => {
+    return useQuery<IBank, Error>({ 
+        queryKey: banksKeys.detail(id),
+        queryFn: () => getBank(id),
+        enabled: !!id, 
+    });
+};
