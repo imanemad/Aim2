@@ -5,7 +5,7 @@ import { forwardRef } from "react";
 interface FormInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
     label: string;
     name: string;
-    error?: string;
+    error?: string; 
 }
 
 const InputText = forwardRef<HTMLInputElement, FormInputProps>(

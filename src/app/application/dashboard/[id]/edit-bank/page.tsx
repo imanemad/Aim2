@@ -1,6 +1,7 @@
 "use client";
 import toast from "react-hot-toast";
 import InputText from "@/components/Form/InputText";
+import SubmitBtn from "@/components/Form/SubmitBtn";
 import FormHeader from "@/components/Form/FormHeader";
 import InputPrice from "@/components/Form/InputNumber";
 import { useParams, useRouter } from "next/navigation";
@@ -84,15 +85,7 @@ export default function Page() {
                     )}
                 />
 
-                <div className="text-end Form-Item">
-                    <button
-                        className={`Btn Btn-Black m-0 mt-4 ${isPending ? "opacity-50" : ""}`}
-                        type="submit"
-                        disabled={isPending}
-                    >
-                        {isPending ? "در حال ذخیره..." : "ویرایش"}
-                    </button>
-                </div>
+                <SubmitBtn isPending={isPending} title="ویرایش"/>
             </form>
         </div>
     );

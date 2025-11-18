@@ -14,16 +14,10 @@
       "userId": 1
     },
     {
-      "id": "25e5",
-      "name": "هادی",
-      "phone": "09126105062",
-      "userId": 1
-    },
-    {
-      "id": "6a7b",
-      "name": "لیلا",
+      "name": "رضا",
       "phone": "09125557788",
-      "userId": 1
+      "userId": 1,
+      "id": "6a7b"
     },
     {
       "id": "cbe8",
@@ -34,8 +28,9 @@
   ],
   "banks": [
     {
-      "bankName": "ارز دلار",
+      "bankName": "ارز دلاری",
       "balance": 2500000,
+      "userId": 1,
       "id": "2"
     },
     {
