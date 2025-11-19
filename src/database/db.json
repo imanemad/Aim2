@@ -58,7 +58,7 @@
     },
     {
       "bankName": "بانک شهر",
-      "balance": 2786828,
+      "balance": 3000000,
       "userId": 1,
       "id": "e708"
     }
@@ -118,6 +118,76 @@
       "amount": 200000,
       "description": "دریافت قرض از حمید",
       "date": "2025-10-29T10:00:00Z"
+    },
+    {
+      "id": "eb6b",
+      "userId": 1,
+      "bankId": "e708",
+      "categoryId": "3",
+      "type": "deposit",
+      "amount": 20000000,
+      "description": "test",
+      "date": "2025-11-18T15:42:27.023Z"
+    },
+    {
+      "id": "7f1b",
+      "userId": 1,
+      "bankId": "e708",
+      "categoryId": "3",
+      "type": "deposit",
+      "amount": 2000000,
+      "description": "test",
+      "date": "2025-11-18T15:42:59.911Z"
+    },
+    {
+      "id": "7b9a",
+      "userId": 1,
+      "bankId": "e708",
+      "categoryId": "7",
+      "type": "withdraw",
+      "amount": 2000000,
+      "description": "",
+      "date": "2025-11-18T15:43:19.279Z"
+    },
+    {
+      "id": "4d2a",
+      "amount": 2000,
+      "description": "",
+      "userId": 1,
+      "bankId": "6ed8",
+      "categoryId": "3",
+      "type": "deposit",
+      "date": "2025-11-19T05:45:03.458Z"
+    },
+    {
+      "id": "1c3c",
+      "amount": 2000000,
+      "description": "",
+      "userId": 1,
+      "bankId": "e708",
+      "categoryId": "7",
+      "type": "withdraw",
+      "date": "2025-11-19T06:41:50.232Z"
+    },
+    {
+      "id": "9964",
+      "amount": 20000000,
+      "description": "",
+      "userId": 1,
+      "bankId": "e708",
+      "categoryId": "3",
+      "type": "deposit",
+      "date": "2025-11-19T06:42:09.255Z"
+    },
+    {
+      "id": "d4ab",
+      "amount": 0,
+      "description": "",
+      "userId": 1,
+      "bankId": "2",
+      "categoryId": "3",
+      "type": "deposit",
+      "date": "2025-11-19T06:42:39.031Z"
     }
   ]
 }

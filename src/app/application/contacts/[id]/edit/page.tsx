@@ -65,6 +65,7 @@ export default function Page() {
 
       <form onSubmit={handleSubmit(onSubmit)} className="Form">
         <InputText
+          required
           label="نام مخاطب"
           {...register("name")}
           error={errors.name?.message}

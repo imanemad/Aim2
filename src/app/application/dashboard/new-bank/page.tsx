@@ -48,6 +48,7 @@ export default function Page() {
 
         <form onSubmit={handleSubmit(onSubmit)} className="Form">
             <InputText
+                required
                 label="نام صندوق / بانک"
                 {...register("bankName")}
                 error={errors.bankName?.message}
