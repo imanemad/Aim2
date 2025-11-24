@@ -1,0 +1,74 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum CategoryType {
+  deposit
+  withdraw
+}
+
+model User {
+  id       Int       @id @default(autoincrement())
+  name     String
+  email    String    @unique
+  contacts Contact[]
+  banks    Bank[]
+  categories Category[]
+  transactions Transaction[]
+}
+
+model Contact {
+  id     String  @id
+  name   String
+  phone  String
+  userId Int
+  user   User    @relation(fields: [userId], references: [id])
+  transactions Transaction[]
+}
+
+model Bank {
+  id        String  @id
+  bankName  String
+  balance   Int
+  userId    Int
+  user      User    @relation(fields: [userId], references: [id])
+  transactions Transaction[]
+}
+
+model Category {
+  id     String  @id
+  name   String
+  type   CategoryType
+  userId Int?
+  user   User?   @relation(fields: [userId], references: [id])
+  transactions Transaction[]
+}
+
+model Transaction {
+  id         String       @id
+  userId     Int
+  bankId     String
+  contactId  String?
+  categoryId String
+  type       CategoryType
+  amount     Int
+  lastBalanceBank Int  
+  description String
+  date       DateTime
+
+  user     User     @relation(fields: [userId], references: [id])
+  bank     Bank     @relation(fields: [bankId], references: [id])
+  contact  Contact? @relation(fields: [contactId], references: [id])
+  category Category @relation(fields: [categoryId], references: [id])
+}

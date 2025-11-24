@@ -39,7 +39,7 @@ export default function Transactions() {
                                 <div className="Item" key={item.id}>
                                     <div className="FlexBetween">
                                         <div className="Title">
-                                            
+                                            {item.categoryName}
                                         </div>
                                         <BiCartLeftFill />
                                     </div>

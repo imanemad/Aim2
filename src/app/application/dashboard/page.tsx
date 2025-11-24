@@ -18,7 +18,7 @@ export default function page() {
                         </Link>
                     </div>
 
-                    <Loans/>
+                    {/* <Loans/> */}
 
                     <div className="Banks ">
                         

@@ -1,8 +1,8 @@
-import { baseBackendURL } from "@/lib/config";
+// import { baseBackendURL } from "@/lib/config";
 import axios from "axios";
 
 const httpServices = axios.create({
-    baseURL: baseBackendURL,
+    baseURL: "http://localhost:8080/api",
     headers: {
         "Content-Type": "application/json",
     },

@@ -1,7 +1,7 @@
 import httpServices from "@/lib/httpServices";
-import { ITransaction } from "../transactions/types";
+import { ITransaction, ITransactionWithRelations } from "../transactions/types";
 
-export async function getTransactions(): Promise<ITransaction[]> {
+export async function getTransactions(): Promise<ITransactionWithRelations[]> {
     const res = await httpServices.get("/transactions");
     return res.data;
 }

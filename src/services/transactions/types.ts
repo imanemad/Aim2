@@ -5,7 +5,20 @@ export interface ITransaction {
     contactId?: number;
     categoryId: number;
     type: "deposit" | "withdraw";
+    lastBalanceBank : number;
     amount: number;
     description?:string;
+    date: string;
+}
+
+export interface ITransactionWithRelations {
+    id: number;
+    type: "deposit" | "withdraw";
+    categoryName: string;
+    bankName: string;
+    bankLastBalance: number;
+    contactName: string | null;
+    amount: number;
+    description?: string;
     date: string;
 }
