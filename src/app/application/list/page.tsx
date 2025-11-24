@@ -3,9 +3,9 @@ import BiCartLeftFill from "@/components/icons/BiCartLeftFill";
 import BiDashCircleFill from "@/components/icons/BiDashCircleFill";
 import BiPlusCircleFill from "@/components/icons/BiPlusCircleFill";
 import BiSearch from "@/components/icons/BiSearch";
-import { useGetTransactionsQuery } from "@/services/transactions/hooks";
 import moment from "moment-jalaali";
 import toast from "react-hot-toast";
+import { useGetTransactionsQuery } from "@/services/transactions/hooks";
 
 export default function Transactions() {
     const { 
@@ -41,16 +41,21 @@ export default function Transactions() {
                                         <div className="Title">
                                             {item.categoryName}
                                         </div>
-                                        <BiCartLeftFill />
+                                        <div className="flex space-x-1">
+                                            <div className="FlexG8">
+                                                {item.type === "deposit" 
+                                                    ? <BiPlusCircleFill className="Plus" size={15} /> 
+                                                    : <BiDashCircleFill className="Dash" size={15} />
+                                                }
+                                                <small className="En">{item.amount.toLocaleString()}</small>
+                                            </div>
+                                            <BiCartLeftFill />
+                                        </div>
                                     </div>
                                     <div className="FlexBetween mt-3">
-                                        <div className="FlexG8">
-                                            {item.type === "deposit" 
-                                                ? <BiPlusCircleFill className="Plus" size={15} /> 
-                                                : <BiDashCircleFill className="Dash" size={15} />
-                                            }
-                                            <small className="En">{item.amount.toLocaleString()}</small>
-                                        </div>
+                                        <small>
+                                            {`مانده ${item.bankName} ${item.lastBalanceBank.toLocaleString()}`}
+                                        </small>
                                         <small className="En">{moment(item.date).format('jYYYY/jMM/jDD')}</small>
                                     </div>
                                 </div>

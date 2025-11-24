@@ -18,7 +18,7 @@ export async function GET() {
             type: t.type,
             categoryName: t.category.name,
             bankName: t.bank.bankName,
-            bankLastBalance: t.bank.balance,
+            lastBalanceBank: t.lastBalanceBank,
             contactName: t.contact?.name || null,
             amount: t.amount,
             description: t.description,

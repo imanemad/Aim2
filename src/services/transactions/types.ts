@@ -16,7 +16,7 @@ export interface ITransactionWithRelations {
     type: "deposit" | "withdraw";
     categoryName: string;
     bankName: string;
-    bankLastBalance: number;
+    lastBalanceBank: number;
     contactName: string | null;
     amount: number;
     description?: string;

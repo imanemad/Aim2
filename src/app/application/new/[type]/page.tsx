@@ -18,6 +18,7 @@ import { TransactionFormValues} from "@/services/transactions/zod";
 import { createTransactionAction } from "@/actions/transactions/create.action";
 import { useQueryClient } from "@tanstack/react-query";
 import { buildTransactionResolver } from "@/services/transactions/resolver";
+import { banksKeys } from "@/services/banks/banks.queryKeys";
 
 export default function Page() {
     const router = useRouter();
@@ -71,6 +72,7 @@ export default function Page() {
                 if (result.success) {
                     toast.success(result.message!);
                     queryClient.invalidateQueries({ queryKey: transactionsKeys.list() });
+                    queryClient.invalidateQueries({ queryKey: banksKeys.list() });
                     router.push("/application");
                 } else {
                     toast.error(result.message || "خطا در ذخیره اطلاعات");
