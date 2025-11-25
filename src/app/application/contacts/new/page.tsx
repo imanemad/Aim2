@@ -34,7 +34,7 @@ export default function Page() {
 
                 queryClient.invalidateQueries({ queryKey: contactsKeys.list() });
 
-                router.push("/application/contacts");
+                router.back();
             } else {
                 toast.error(result.message || "خطا در ذخیره اطلاعات");
             }

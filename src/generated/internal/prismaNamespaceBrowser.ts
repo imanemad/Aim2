@@ -87,6 +87,7 @@ export const ContactScalarFieldEnum = {
   id: 'id',
   name: 'name',
   phone: 'phone',
+  balance: 'balance',
   userId: 'userId'
 } as const
 

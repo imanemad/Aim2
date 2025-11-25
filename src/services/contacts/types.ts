@@ -3,4 +3,5 @@ export interface IPeople {
     userId: number;
     name: string;
     phone: string;
+    balance: number;
 }

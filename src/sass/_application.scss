@@ -191,18 +191,22 @@
                             transition: all 0.3s;
                             visibility: hidden;
                             opacity: 0;
-
-                            .Item{
-                                @extend %Cursor;
-                                color: #000;
-                                padding: 8px 15px;
-                                &:hover{
-                                    background-color: #00000015;
+                            .Container{
+                                padding: 10px 0;
+                                max-height: 131px;
+                                overflow-y: auto;
+                                .Item{
+                                    @extend %Cursor;
+                                    color: #000;
+                                    padding: 8px 15px;
+                                    &:hover{
+                                        background-color: #00000015;
+                                    }
                                 }
                             }
+
                         }
                     }
-                    
                     .Bg-Close{
                         position: fixed;
                         width: 100%;
@@ -308,6 +312,7 @@
                     .Debts{
                         @include Card;
                         height: 130px;
+                        border: 1px solid #41a10080;
                         .En{
                             @extend %GridCenter;
                             font-size: 23px !important;
@@ -317,6 +322,7 @@
                             color: #555;
                         }
                     }
+                    .Debts:last-of-type{border: 1px solid #a1000040;}
                 }
                 
                 .Chart{

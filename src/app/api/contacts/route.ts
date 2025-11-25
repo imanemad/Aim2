@@ -15,12 +15,12 @@ export async function GET() {
 // POST /api/contact
 export async function POST(req: NextRequest) {
     try {
-        const { name, phone, userId } = await req.json();
+        const { name, phone, userId, balance } = await req.json();
         if (!name || !userId)
         return NextResponse.json({ error: "name و userId الزامی است" }, { status: 400 });
 
         const contact = await prisma.contact.create({
-        data: { id: crypto.randomUUID(), name, phone, userId },
+        data: { id: crypto.randomUUID(), name, phone, userId, balance },
         });
 
         return NextResponse.json(contact, { status: 201 });

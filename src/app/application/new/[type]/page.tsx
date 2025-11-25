@@ -19,6 +19,9 @@ import { createTransactionAction } from "@/actions/transactions/create.action";
 import { useQueryClient } from "@tanstack/react-query";
 import { buildTransactionResolver } from "@/services/transactions/resolver";
 import { banksKeys } from "@/services/banks/banks.queryKeys";
+import { IPeople } from "@/services/contacts/types";
+import { useGetContactsQuery } from "@/services/contacts/hooks";
+import { contactsKeys } from "@/services/contacts/contacts.queryKeys";
 
 export default function Page() {
     const router = useRouter();
@@ -29,9 +32,11 @@ export default function Page() {
 
     const { data: categories} = useGetCategoriesQuery(type);
     const { data: banks} = useGetBanksQuery();
+    const { data: contacts } = useGetContactsQuery();
 
     const [selectedCategory, setSelectedCategory] = useState<ICategory | null>(null);
     const [selectedBank, setSelectedBank] = useState<IBank | null>(null);
+    const [selectedContact, setSelectedContact] = useState<IPeople | null>(null);
 
     const { register, handleSubmit, control, formState: { errors } } = useForm<TransactionFormValues>({
         resolver: buildTransactionResolver(
@@ -65,6 +70,7 @@ export default function Page() {
                     userId: 1,
                     bankId: selectedBank.id,
                     categoryId: selectedCategory.id,
+                    contactId: selectedContact?.id,
                     type, // deposit | withdraw 
                     date: new Date().toISOString(),
                 });
@@ -73,6 +79,11 @@ export default function Page() {
                     toast.success(result.message!);
                     queryClient.invalidateQueries({ queryKey: transactionsKeys.list() });
                     queryClient.invalidateQueries({ queryKey: banksKeys.list() });
+                    if (selectedContact) {
+                        queryClient.invalidateQueries({
+                            queryKey: contactsKeys.detail(selectedContact.id.toString()),
+                        });
+                    }
                     router.push("/application");
                 } else {
                     toast.error(result.message || "خطا در ذخیره اطلاعات");
@@ -86,6 +97,9 @@ export default function Page() {
         withdraw: "برداشت از حساب",
     };
     const title = titles[type];
+    const NEED_CONTACT = [1001, 1002, 2001, 2002];
+    const showContactField =
+        selectedCategory && NEED_CONTACT.includes(Number(selectedCategory.id));
 
     return (
         <div className="Container">
@@ -118,6 +132,20 @@ export default function Page() {
                         href="new/new-category"
                     />
                 </div>
+
+                {showContactField && (
+                    <div className="Form-Item">
+                        <Selection<IPeople>
+                            required
+                            label="مخاطب"
+                            items={contacts || []}
+                            selectedItem={selectedContact}
+                            getLabel={(item) => item.name}
+                            onSelect={(item) => setSelectedContact(item)}
+                            href="/application/contacts/new"
+                        />
+                    </div>
+                )}
 
                 <Controller
                     name="amount"

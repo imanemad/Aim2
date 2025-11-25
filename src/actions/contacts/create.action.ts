@@ -15,7 +15,7 @@ export async function createContactAction(formData: {
     userId: number;
 }): Promise<CreateContactState> {
     try {
-        await createContact(formData);
+        await createContact({ ...formData, balance: 0 });  // ← balance صفر
         revalidatePath("/application/contacts");
         return actionResponse(true, "مخاطب با موفقیت ایجاد شد.");
     } catch (error: unknown) {

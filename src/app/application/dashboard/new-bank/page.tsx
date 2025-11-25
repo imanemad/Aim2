@@ -35,7 +35,7 @@ export default function Page() {
 
                 queryClient.invalidateQueries({ queryKey: banksKeys.list() });
 
-                router.push("/application/dashboard");
+                router.back();
             } else {
                 toast.error(result.message || "خطا در ذخیره اطلاعات");
             }

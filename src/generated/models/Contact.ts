@@ -27,10 +27,12 @@ export type AggregateContact = {
 }
 
 export type ContactAvgAggregateOutputType = {
+  balance: number | null
   userId: number | null
 }
 
 export type ContactSumAggregateOutputType = {
+  balance: number | null
   userId: number | null
 }
 
@@ -38,6 +40,7 @@ export type ContactMinAggregateOutputType = {
   id: string | null
   name: string | null
   phone: string | null
+  balance: number | null
   userId: number | null
 }
 
@@ -45,6 +48,7 @@ export type ContactMaxAggregateOutputType = {
   id: string | null
   name: string | null
   phone: string | null
+  balance: number | null
   userId: number | null
 }
 
@@ -52,16 +56,19 @@ export type ContactCountAggregateOutputType = {
   id: number
   name: number
   phone: number
+  balance: number
   userId: number
   _all: number
 }
 
 
 export type ContactAvgAggregateInputType = {
+  balance?: true
   userId?: true
 }
 
 export type ContactSumAggregateInputType = {
+  balance?: true
   userId?: true
 }
 
@@ -69,6 +76,7 @@ export type ContactMinAggregateInputType = {
   id?: true
   name?: true
   phone?: true
+  balance?: true
   userId?: true
 }
 
@@ -76,6 +84,7 @@ export type ContactMaxAggregateInputType = {
   id?: true
   name?: true
   phone?: true
+  balance?: true
   userId?: true
 }
 
@@ -83,6 +92,7 @@ export type ContactCountAggregateInputType = {
   id?: true
   name?: true
   phone?: true
+  balance?: true
   userId?: true
   _all?: true
 }
@@ -177,6 +187,7 @@ export type ContactGroupByOutputType = {
   id: string
   name: string
   phone: string
+  balance: number
   userId: number
   _count: ContactCountAggregateOutputType | null
   _avg: ContactAvgAggregateOutputType | null
@@ -207,6 +218,7 @@ export type ContactWhereInput = {
   id?: Prisma.StringFilter<"Contact"> | string
   name?: Prisma.StringFilter<"Contact"> | string
   phone?: Prisma.StringFilter<"Contact"> | string
+  balance?: Prisma.IntFilter<"Contact"> | number
   userId?: Prisma.IntFilter<"Contact"> | number
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   transactions?: Prisma.TransactionListRelationFilter
@@ -216,6 +228,7 @@ export type ContactOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   phone?: Prisma.SortOrder
+  balance?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
   transactions?: Prisma.TransactionOrderByRelationAggregateInput
@@ -228,6 +241,7 @@ export type ContactWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.ContactWhereInput | Prisma.ContactWhereInput[]
   name?: Prisma.StringFilter<"Contact"> | string
   phone?: Prisma.StringFilter<"Contact"> | string
+  balance?: Prisma.IntFilter<"Contact"> | number
   userId?: Prisma.IntFilter<"Contact"> | number
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   transactions?: Prisma.TransactionListRelationFilter
@@ -237,6 +251,7 @@ export type ContactOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   phone?: Prisma.SortOrder
+  balance?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   _count?: Prisma.ContactCountOrderByAggregateInput
   _avg?: Prisma.ContactAvgOrderByAggregateInput
@@ -252,6 +267,7 @@ export type ContactScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Contact"> | string
   name?: Prisma.StringWithAggregatesFilter<"Contact"> | string
   phone?: Prisma.StringWithAggregatesFilter<"Contact"> | string
+  balance?: Prisma.IntWithAggregatesFilter<"Contact"> | number
   userId?: Prisma.IntWithAggregatesFilter<"Contact"> | number
 }
 
@@ -259,6 +275,7 @@ export type ContactCreateInput = {
   id: string
   name: string
   phone: string
+  balance: number
   user: Prisma.UserCreateNestedOneWithoutContactsInput
   transactions?: Prisma.TransactionCreateNestedManyWithoutContactInput
 }
@@ -267,6 +284,7 @@ export type ContactUncheckedCreateInput = {
   id: string
   name: string
   phone: string
+  balance: number
   userId: number
   transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutContactInput
 }
@@ -275,6 +293,7 @@ export type ContactUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
+  balance?: Prisma.IntFieldUpdateOperationsInput | number
   user?: Prisma.UserUpdateOneRequiredWithoutContactsNestedInput
   transactions?: Prisma.TransactionUpdateManyWithoutContactNestedInput
 }
@@ -283,6 +302,7 @@ export type ContactUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
+  balance?: Prisma.IntFieldUpdateOperationsInput | number
   userId?: Prisma.IntFieldUpdateOperationsInput | number
   transactions?: Prisma.TransactionUncheckedUpdateManyWithoutContactNestedInput
 }
@@ -291,6 +311,7 @@ export type ContactCreateManyInput = {
   id: string
   name: string
   phone: string
+  balance: number
   userId: number
 }
 
@@ -298,12 +319,14 @@ export type ContactUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
+  balance?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type ContactUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
+  balance?: Prisma.IntFieldUpdateOperationsInput | number
   userId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -321,10 +344,12 @@ export type ContactCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   phone?: Prisma.SortOrder
+  balance?: Prisma.SortOrder
   userId?: Prisma.SortOrder
 }
 
 export type ContactAvgOrderByAggregateInput = {
+  balance?: Prisma.SortOrder
   userId?: Prisma.SortOrder
 }
 
@@ -332,6 +357,7 @@ export type ContactMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   phone?: Prisma.SortOrder
+  balance?: Prisma.SortOrder
   userId?: Prisma.SortOrder
 }
 
@@ -339,10 +365,12 @@ export type ContactMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   phone?: Prisma.SortOrder
+  balance?: Prisma.SortOrder
   userId?: Prisma.SortOrder
 }
 
 export type ContactSumOrderByAggregateInput = {
+  balance?: Prisma.SortOrder
   userId?: Prisma.SortOrder
 }
 
@@ -413,6 +441,7 @@ export type ContactCreateWithoutUserInput = {
   id: string
   name: string
   phone: string
+  balance: number
   transactions?: Prisma.TransactionCreateNestedManyWithoutContactInput
 }
 
@@ -420,6 +449,7 @@ export type ContactUncheckedCreateWithoutUserInput = {
   id: string
   name: string
   phone: string
+  balance: number
   transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutContactInput
 }
 
@@ -456,6 +486,7 @@ export type ContactScalarWhereInput = {
   id?: Prisma.StringFilter<"Contact"> | string
   name?: Prisma.StringFilter<"Contact"> | string
   phone?: Prisma.StringFilter<"Contact"> | string
+  balance?: Prisma.IntFilter<"Contact"> | number
   userId?: Prisma.IntFilter<"Contact"> | number
 }
 
@@ -463,6 +494,7 @@ export type ContactCreateWithoutTransactionsInput = {
   id: string
   name: string
   phone: string
+  balance: number
   user: Prisma.UserCreateNestedOneWithoutContactsInput
 }
 
@@ -470,6 +502,7 @@ export type ContactUncheckedCreateWithoutTransactionsInput = {
   id: string
   name: string
   phone: string
+  balance: number
   userId: number
 }
 
@@ -493,6 +526,7 @@ export type ContactUpdateWithoutTransactionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
+  balance?: Prisma.IntFieldUpdateOperationsInput | number
   user?: Prisma.UserUpdateOneRequiredWithoutContactsNestedInput
 }
 
@@ -500,6 +534,7 @@ export type ContactUncheckedUpdateWithoutTransactionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
+  balance?: Prisma.IntFieldUpdateOperationsInput | number
   userId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -507,12 +542,14 @@ export type ContactCreateManyUserInput = {
   id: string
   name: string
   phone: string
+  balance: number
 }
 
 export type ContactUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
+  balance?: Prisma.IntFieldUpdateOperationsInput | number
   transactions?: Prisma.TransactionUpdateManyWithoutContactNestedInput
 }
 
@@ -520,6 +557,7 @@ export type ContactUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
+  balance?: Prisma.IntFieldUpdateOperationsInput | number
   transactions?: Prisma.TransactionUncheckedUpdateManyWithoutContactNestedInput
 }
 
@@ -527,6 +565,7 @@ export type ContactUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
+  balance?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 
@@ -564,6 +603,7 @@ export type ContactSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   id?: boolean
   name?: boolean
   phone?: boolean
+  balance?: boolean
   userId?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   transactions?: boolean | Prisma.Contact$transactionsArgs<ExtArgs>
@@ -574,6 +614,7 @@ export type ContactSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   id?: boolean
   name?: boolean
   phone?: boolean
+  balance?: boolean
   userId?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["contact"]>
@@ -582,6 +623,7 @@ export type ContactSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   id?: boolean
   name?: boolean
   phone?: boolean
+  balance?: boolean
   userId?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["contact"]>
@@ -590,10 +632,11 @@ export type ContactSelectScalar = {
   id?: boolean
   name?: boolean
   phone?: boolean
+  balance?: boolean
   userId?: boolean
 }
 
-export type ContactOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "phone" | "userId", ExtArgs["result"]["contact"]>
+export type ContactOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "phone" | "balance" | "userId", ExtArgs["result"]["contact"]>
 export type ContactInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   transactions?: boolean | Prisma.Contact$transactionsArgs<ExtArgs>
@@ -616,6 +659,7 @@ export type $ContactPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     id: string
     name: string
     phone: string
+    balance: number
     userId: number
   }, ExtArgs["result"]["contact"]>
   composites: {}
@@ -1045,6 +1089,7 @@ export interface ContactFieldRefs {
   readonly id: Prisma.FieldRef<"Contact", 'String'>
   readonly name: Prisma.FieldRef<"Contact", 'String'>
   readonly phone: Prisma.FieldRef<"Contact", 'String'>
+  readonly balance: Prisma.FieldRef<"Contact", 'Int'>
   readonly userId: Prisma.FieldRef<"Contact", 'Int'>
 }
     

@@ -32,6 +32,7 @@ model Contact {
   id     String  @id
   name   String
   phone  String
+  balance   Int
   userId Int
   user   User    @relation(fields: [userId], references: [id])
   transactions Transaction[]

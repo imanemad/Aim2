@@ -37,18 +37,20 @@ export default function Selection<T>({
             </div>
 
             <div className={`Selection-List ${isOpen ? "Show" : ""}`}>
-                {items.map((item, i) => (
-                    <small
+                <div className="Container">
+                    {items.map((item, i) => (
+                        <small
                         className="Item"
                         key={i}
                         onClick={() => {
                             onSelect(item);
                             setOpen(false);
                         }}
-                    >
-                        {getLabel(item)}
-                    </small>
-                ))}
+                        >
+                            {getLabel(item)}
+                        </small>
+                    ))}
+                </div>
 
                 <div className="border-t border-t-gray-300! flex justify-end">
                     <Link href={href} className="Btn Btn-Blue my-2! mx-3! text-sm!">

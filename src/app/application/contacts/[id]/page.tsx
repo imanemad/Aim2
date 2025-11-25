@@ -68,13 +68,26 @@ export default function Page() {
             <div className="Card">
                 <div className="FlexBetween pb-0.5">
                     <small className="Title">وضعیت حساب</small>
-                    <Link href="/application/new/deposit" className="text-blue-500! text-[12.5px]! pb-1">
-                        تسویه حساب
-                    </Link>
+                    {contact?.balance != null && contact.balance !== 0 && (
+                        <Link
+                            href={`/application/new/${contact.balance > 0 ? "deposit" : "withdraw"}`}
+                            className="text-blue-500! text-[12.5px]! pb-1"
+                        >
+                            تسویه حساب
+                        </Link>
+                    )}
                 </div>
                 <div className="Details FlexBetween">
-                    <div>بدهکار</div>
-                    <div className="font-bold pt-1">4.120.000</div>
+                    <div>
+                    {contact?.balance != null
+                        ? contact.balance === 0
+                        ? "تسویه"
+                        : contact.balance > 0
+                        ? "بدهکار"
+                        : "بستانکار"
+                        : "نامشخص"}
+                    </div>
+                    <div className="font-bold pt-1" dir="ltr">{contact?.balance.toLocaleString()}</div>
                 </div>
             </div>
             <div className="Card">
