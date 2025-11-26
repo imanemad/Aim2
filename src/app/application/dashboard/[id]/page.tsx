@@ -11,6 +11,7 @@ import { useLoading } from "@/context/LoadingContext";
 import { useGetBankQuery } from "@/services/banks/hooks";
 import { deleteBankAction } from "@/actions/banks/delete.action";
 import { banksKeys } from "@/services/banks/banks.queryKeys";
+import BiArrowLeft from "@/components/icons/BiArrowLeft";
 
 export default function Page() {
     const params = useParams<{ id: string }>();
@@ -61,19 +62,16 @@ export default function Page() {
                 {isLoading 
                     ? <div>Loading...</div>
                     :<>
-                        <small className="Title">مشخصات</small>
-                        <div className="space-y-3 Details">
-                            <div>{bank?.bankName}</div>
-                            <div className="">{bank?.balance.toLocaleString()}</div>
+                        <div className="space-y-3 text-center p-5">
+                            <div className="text-xl!">{bank?.bankName}</div>
+                            <div className="text-xl!">{bank?.balance.toLocaleString()}</div>
                         </div>
                     </>
                 }
             </div>
-            <div className="Card">
-                <small className="Title">تراکنشات</small>
-                <div className="space-y-3 Details">
-                    <div>تراکنشی ثبت نشده</div>
-                </div>
+            <div className="m-2 pt-2! text-blue-500 FlexG8 border-b w-fit">
+                <div>تراکنشهای مرتبط</div>
+                <BiArrowLeft/>
             </div>
         </div>
     )
