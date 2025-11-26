@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import BiArrowRightCircle from "../icons/BiArrowRightCircle";
 
 interface FormHeaderProps {
-    title: string;
+    title: string | undefined;
     children?: React.ReactNode;
 }
 

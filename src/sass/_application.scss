@@ -46,7 +46,7 @@
             }
             .active{
                 color:#fff;
-                background-color: #444;
+                background-color: #303030;
             }
         }
 
@@ -61,10 +61,13 @@
             width: 550px;
             margin: 0 auto;
             padding: 15px;
+            @media (max-width: 570px) {
+                width: 100%;
+            }
 
             @mixin Card{ 
                 border-radius: 8px;
-                background-color: #ffffff99;
+                background-color: #ffffff;
                 padding: 20px;
                 padding-bottom: 10px;
                 width: 100%;
@@ -72,7 +75,7 @@
 
             .Card{
                 @include Card;
-                padding:10px 20px 15px;
+                padding:10px;
                 margin-bottom: 10px;
                 overflow: hidden;
                 .Title{
@@ -80,8 +83,31 @@
                     margin-right: -5px;
                     padding-bottom: 10px;
                 }
-                .Details{
-                    padding: 0 7px 0 0;
+                .Transaction-Title{
+                    @extend %FlexBetween;
+                    border-bottom: 1px solid #00000020;
+                    padding: 0 10px 15px;
+                    margin-bottom: 15px;
+                }
+                .Details-Transaction{
+                    .Row{
+                        @extend %FlexBetween;
+                        padding: 5px 10px 3px;
+                        border-radius: 6px;
+                        .Q{
+                            color: #00000060;
+                        }
+                    }
+                    .Row:nth-child(odd){
+                        background-color: #00000008;
+                    }
+                    .Footer{
+                        padding: 10px 10px 0;
+                        border-top: 1px solid #00000020;
+                        display: flex;
+                        gap: 20px;
+                        margin-top: 15px;
+                    }
                 }
             }
 
@@ -141,6 +167,9 @@
 
             .Form{
                 @include Card;
+                @media (max-width: 570px) {
+                    padding: 15px 0;
+                }
                 &-Item{
                     width: calc(100% - 40px);
                     margin: 20px;
@@ -192,8 +221,9 @@
                             visibility: hidden;
                             opacity: 0;
                             .Container{
+                                width: 100%;
                                 padding: 10px 0;
-                                max-height: 131px;
+                                max-height: 165px;
                                 overflow-y: auto;
                                 .Item{
                                     @extend %Cursor;
@@ -215,7 +245,8 @@
                         top: 0;
                         left: 0;
                         z-index: 1;
-                        background-color: rgba(0, 0, 0, 0.4);
+                        background-color: rgba(0, 0, 0, 0.5);
+                        backdrop-filter: blur(5px) !important;
                         transition: all 0.3s;
                         visibility: hidden;
                         opacity: 0;
@@ -228,11 +259,17 @@
 
             .Banks{
                 @include Card;
+                @media (max-width: 570px) {
+                    padding: 10px;
+                }
                 .Balance{
                     @extend %FlexBetween;
                     border-radius: 5px;
                     background-color: #fff;
                     padding: 10px 20px;
+                    @media (max-width: 570px) {
+                        padding: 10px 5px;
+                    }
                     .En{
                         font-weight: bold;
                         font-size: 16px !important;
@@ -243,11 +280,8 @@
                     padding: 10px 20px 20px;
                     margin: 15px 0;
                     border-bottom: 1px solid #00000010;
-                    .Name{
-                        width: 150px;
-                    }
-                    .En{
-                        width: 150px;
+                    @media (max-width: 570px) {
+                        padding: 10px 5px 20px;
                     }
                     .bi{
                         color: #0077ff;
@@ -264,10 +298,10 @@
                 .Item{
                     @extend %Cursor;
                     @extend %FlexBetween;
-                    padding: 5px 10px;
+                    padding: 7px 10px;
                     border-radius: 5px;
                     &:hover{
-                        background-color: #fff;
+                        background-color: #00000010;
                     }
                 }
             }
@@ -310,9 +344,14 @@
                 .Loans{
                     @extend .FlexG8;
                     .Debts{
+                        @extend %Cursor;
                         @include Card;
                         height: 130px;
                         border: 1px solid #41a10080;
+                        transition: all 0.3s;
+                        &:hover{
+                            border: 1px solid #000000;
+                        }
                         .En{
                             @extend %GridCenter;
                             font-size: 23px !important;
@@ -320,9 +359,17 @@
                             width: 100%;
                             height: 85%;
                             color: #555;
+                            @media (max-width: 570px) {
+                                font-size: 18px !important;
+                            }
                         }
                     }
-                    .Debts:last-of-type{border: 1px solid #a1000040;}
+                    .Debts:last-of-type{
+                        border: 1px solid #a1000040;
+                        &:hover{
+                            border: 1px solid #000000;
+                        }
+                    }
                 }
                 
                 .Chart{

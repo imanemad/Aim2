@@ -1,6 +1,5 @@
 "use client"
 import Link from "next/link";
-import BiArrowLeft from "../icons/BiArrowLeft";
 import toast from "react-hot-toast";
 import { useGetBanksQuery } from "@/services/banks/hooks";
 
@@ -31,10 +30,9 @@ export default function Banks() {
                         <Link href={`/application/dashboard/${item.id}`} className="Item" key={item.id}>
                             <div className="Name">{item.bankName}</div>
                             <div className="En">{item.balance.toLocaleString()}</div>
-                            <BiArrowLeft size={16} className="bi bi-arrow-left"/>
                         </Link>
                     ))}
-                    <Link href="/application/dashboard/new-bank" className="Btn Btn-Black m-0! mb-2!">صندوق جدید</Link>
+                    <Link href="/application/dashboard/new-bank" className="Btn Btn-Black m-0! mb-2! mx-2!">صندوق جدید</Link>
                 </>)
             }
         </>

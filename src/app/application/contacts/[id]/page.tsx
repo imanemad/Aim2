@@ -11,6 +11,7 @@ import { contactsKeys } from "@/services/contacts/contacts.queryKeys"; // 👈 �
 import BiGear from "@/components/icons/BiGear";
 import BiTrash from "@/components/icons/BiTrash";
 import { useLoading } from "@/context/LoadingContext";
+import BiArrowLeft from "@/components/icons/BiArrowLeft";
 
 export default function Page() {
     const params = useParams<{ id: string }>();
@@ -57,26 +58,15 @@ export default function Page() {
                 {isLoading 
                     ? <div>Loading...</div>
                     :<>
-                        <small className="Title">مشخصات</small>
-                        <div className="space-y-3 Details">
-                            <div>{contact?.name}</div>
-                            <div className="">{contact?.phone}</div>
+                        <div className="space-y-3 text-center p-5">
+                            <div className="text-xl!">{contact?.name}</div>
+                            <div className="text-xl!">{contact?.phone}</div>
                         </div>
                     </>
                 }
             </div>
-            <div className="Card">
-                <div className="FlexBetween pb-0.5">
-                    <small className="Title">وضعیت حساب</small>
-                    {contact?.balance != null && contact.balance !== 0 && (
-                        <Link
-                            href={`/application/new/${contact.balance > 0 ? "deposit" : "withdraw"}`}
-                            className="text-blue-500! text-[12.5px]! pb-1"
-                        >
-                            تسویه حساب
-                        </Link>
-                    )}
-                </div>
+            <div className="p-2">وضعیت حساب</div>
+            <div className="Card p-5!">
                 <div className="Details FlexBetween">
                     <div>
                     {contact?.balance != null
@@ -89,12 +79,21 @@ export default function Page() {
                     </div>
                     <div className="font-bold pt-1" dir="ltr">{contact?.balance.toLocaleString()}</div>
                 </div>
-            </div>
-            <div className="Card">
-                <small className="Title">تراکنشات</small>
-                <div className="space-y-3 Details">
-                    <div>تراکنشی ثبت نشده</div>
+                <div className="text-end pt-3">
+                    {contact?.balance != null && contact.balance !== 0 && (
+                        <Link
+                            href={`/application/new/${contact.balance > 0 ? "deposit" : "withdraw"}`}
+                            className="text-blue-500! text-[12.5px]! pb-1"
+                        >
+                            تسویه حساب
+                        </Link>
+                    )}
                 </div>
+            </div>
+
+            <div className="m-2 pt-2! text-blue-500 FlexG8 border-b w-fit">
+                <div>تراکنشهای مرتبط</div>
+                <BiArrowLeft/>
             </div>
         </div>
     )

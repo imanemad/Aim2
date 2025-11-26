@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { transactionsKeys } from "./transactions.queryKeys";
-import { ITransaction } from "./types";
+import { ITransactionWithRelations } from "./types";
 import { getTransaction, getTransactions } from "../data-fetchers/transactions.fetchers";
 
 export const useGetTransactionsQuery = () => {
@@ -12,7 +12,7 @@ export const useGetTransactionsQuery = () => {
 };
 
 export const useGetTransactionQuery = (id: string) => {
-    return useQuery<ITransaction, Error>({ 
+    return useQuery<ITransactionWithRelations, Error>({ 
         queryKey: transactionsKeys.detail(id),
         queryFn: () => getTransaction(id),
         enabled: !!id, 

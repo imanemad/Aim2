@@ -12,12 +12,14 @@ export interface ITransaction {
 }
 
 export interface ITransactionWithRelations {
-    id: number;
+    id: string;
     type: "deposit" | "withdraw";
     categoryName: string;
     bankName: string;
+    bankId: string;
     lastBalanceBank: number;
     contactName: string | null;
+    contactId: string | null;
     amount: number;
     description?: string;
     date: string;

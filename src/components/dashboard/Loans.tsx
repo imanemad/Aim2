@@ -1,4 +1,6 @@
 import prisma from "@/lib/prisma";
+import BiArrowLeft from "../icons/BiArrowLeft";
+import Link from "next/link";
 
 export default async function Loans() {
   const contacts = await prisma.contact.findMany({
@@ -16,19 +18,25 @@ export default async function Loans() {
 
   return (
     <div className="Loans">
-      <div className="Debts">
-        <small>مبالغ دریافتنی (بستانکاری)</small>
+      <Link href={`/application/dashboard/loans/receivable`} className="Debts">
+        <div className="FlexBetween">
+          <small>مبالغ بدهکاران</small>
+          <BiArrowLeft size={16} className="bi bi-arrow-left"/>
+        </div>
         <div className="En">
           {receivableAmount.toLocaleString()}
         </div>
-      </div>
+      </Link>
 
-      <div className="Debts">
-        <small>مبالغ پرداختنی (بدهکاری)</small>
+      <Link href={`/application/dashboard/loans/payable`} className="Debts">
+        <div className="FlexBetween">
+          <small>مبالغ بستانکاران</small>
+          <BiArrowLeft size={16} className="bi bi-arrow-left"/>
+        </div>
         <div className="En">
           {payableAmount.toLocaleString()}
         </div>
-      </div>
+      </Link>
     </div>
   );
 }
